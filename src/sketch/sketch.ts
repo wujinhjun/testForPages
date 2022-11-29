@@ -2,7 +2,6 @@ import p5 from "p5";
 import { generateRandomLocation } from "./Utils";
 import Particle from "./Particles";
 
-
 const mySketch = (parentElement: HTMLElement) => (p: p5) => {
     let particles: Particle[] = [];
     let pixelSteps: number = 9;
@@ -34,9 +33,6 @@ const mySketch = (parentElement: HTMLElement) => (p: p5) => {
 
         // console.log(`coordsIndexes: ${coordsIndexes.length}`);
 
-
-
-
         for (let i = 0; i < coordsIndexes.length; i++) {
             let randomIndex = Math.floor(sketch.random(0, coordsIndexes.length));
             let coordIndex = coordsIndexes[randomIndex];
@@ -49,7 +45,6 @@ const mySketch = (parentElement: HTMLElement) => (p: p5) => {
                 let x = coordIndex % sketch.width;
                 let y = coordIndex / sketch.width;
                 // console.log(`x: ${x}, y: ${y}`);
-
                 let newParticle = new Particle(sketch);
 
                 if (particleIndex < particleCount) {
@@ -101,29 +96,23 @@ const mySketch = (parentElement: HTMLElement) => (p: p5) => {
         displayWord(words[wordIndex], p);
     }
 
-
-
     p.draw = () => {
-
         // p.clear(255, 255, 255, 0);
         p.background(bgColor);
         for (let i = particles.length - 1; i >= 0; i--) {
             let particle = particles[i];
             particle.run();
-
             if (particle.isKilled) {
                 if (particle.location.x < 0 || particle.location.x > p.width || particle.location.y < 0 || particle.location.y > p.height) {
                     particles.splice(i, 1);
                 }
             }
         }
-
     }
 
     p.mouseClicked = () => {
         controlPlay();
     }
-
 }
 
 export default mySketch;
