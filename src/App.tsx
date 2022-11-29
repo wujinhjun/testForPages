@@ -9,7 +9,7 @@ const App = () => {
   useEffect(() => {
     const canvasDivElement: HTMLElement =
       canvasRef.current as unknown as HTMLElement;
-    new p5(sketch(canvasDivElement, 500, 500), canvasDivElement);
+    new p5(sketch(canvasDivElement), canvasDivElement);
   }, []);
 
   return <div ref={canvasRef} className="p5" />;
