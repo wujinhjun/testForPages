@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import "./App.scss";
+import "./styles/App.scss";
 import sketch from "./sketch";
 import p5 from "p5";
 
