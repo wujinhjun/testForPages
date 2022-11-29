@@ -1,5 +1,5 @@
 import p5 from "p5";
-import { generateRandomLocation } from "./ControlFunction";
+import { generateRandomLocation } from "./utils";
 import Particle from "./Particles";
 
 
