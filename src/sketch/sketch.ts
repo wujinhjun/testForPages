@@ -32,35 +32,33 @@ const mySketch = (parentElement: HTMLElement) => (p: p5) => {
         }
 
         for (let i = 0; i < coordsIndexes.length; i++) {
-            let randomIndex = Math.floor(sketch.random(0, coordsIndexes.length));
-            let coordIndex = coordsIndexes[randomIndex];
+            let randomIndex: number = Math.floor(sketch.random(0, coordsIndexes.length));
+            let coordIndex: number = coordsIndexes[randomIndex];
             coordsIndexes.splice(randomIndex, 1);
 
             if (pg.pixels[coordIndex * 4] !== 0) {
-                let x = coordIndex % sketch.width;
-                let y = coordIndex / sketch.width;
-                let newParticle = new Particle(sketch);
+                let x: number = coordIndex % sketch.width;
+                let y: number = coordIndex / sketch.width;
+                let newParticle: Particle = new Particle(sketch);
 
                 if (particleIndex < particleCount) {
                     newParticle = particles[particleIndex];
                     newParticle.isKilled = false;
                     particleIndex += 1;
                 } else {
-                    let randomLocation = generateRandomLocation(sketch.width / 2, sketch.height / 2, (sketch.width + sketch.height) / 2, sketch);
+                    let randomLocation: p5.Vector = generateRandomLocation(sketch.width / 2, sketch.height / 2, (sketch.width + sketch.height) / 2, sketch);
                     newParticle.location.x = randomLocation.x;
                     newParticle.location.y = randomLocation.y;
-
                     newParticle.maxSpeed = sketch.random(2, 5);
                     newParticle.maxForce = newParticle.maxSpeed * 0.025;
                     newParticle.particleSize = sketch.random(3, 6);
                     newParticle.colorBlendRate = sketch.random(0.0025, 0.03);
-
                     particles.push(newParticle);
                 }
+
                 newParticle.startColor = sketch.lerpColor(newParticle.startColor, newParticle.targetColor, newParticle.colorWeight);
                 newParticle.targetColor = newColor;
                 newParticle.colorWeight = 0;
-
                 newParticle.target.x = x;
                 newParticle.target.y = y;
             }
@@ -78,6 +76,11 @@ const mySketch = (parentElement: HTMLElement) => (p: p5) => {
 
     const controlPlay = () => {
         console.log(particles.length);
+        for (let i = 0; i < words.length; i++) {
+            setTimeout(function () {
+                displayWord(words[i], p);
+            }, i * 6000);
+        }
     }
 
     p.setup = () => {
@@ -85,7 +88,10 @@ const mySketch = (parentElement: HTMLElement) => (p: p5) => {
         p.createCanvas(parentElement.offsetWidth, 300);
         p.background(0, 0, 0);
         p.pixelDensity(1);
-        words.push("落日西风吹尽")
+        words.push("落日西风吹尽");
+        words.push("残山新雪初飘");
+        words.push("年少光阴易度");
+        words.push("尊前愁绪难消");
 
         displayWord(words[wordIndex], p);
     }
