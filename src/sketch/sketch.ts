@@ -31,21 +31,14 @@ const mySketch = (parentElement: HTMLElement) => (p: p5) => {
             coordsIndexes.push(i);
         }
 
-
-        // sketch.pixelDensity(2);
-        // console.log(`pixelDensity: ${sketch.displayDensity()}`);
         for (let i = 0; i < coordsIndexes.length; i++) {
             let randomIndex = Math.floor(sketch.random(0, coordsIndexes.length));
             let coordIndex = coordsIndexes[randomIndex];
             coordsIndexes.splice(randomIndex, 1);
-            // console.log(`coordsIndexes new: ${coordsIndexes.length}`);
-            // console.log(coordIndex);
 
             if (pg.pixels[coordIndex * 4] !== 0) {
-                // console.log(particleCount);
                 let x = coordIndex % sketch.width;
                 let y = coordIndex / sketch.width;
-                // console.log(`x: ${x}, y: ${y}`);
                 let newParticle = new Particle(sketch);
 
                 if (particleIndex < particleCount) {
@@ -92,14 +85,12 @@ const mySketch = (parentElement: HTMLElement) => (p: p5) => {
         p.createCanvas(parentElement.offsetWidth, 300);
         p.background(0, 0, 0);
         p.pixelDensity(1);
-        // words.push("why");
         words.push("落日西风吹尽")
 
         displayWord(words[wordIndex], p);
     }
 
     p.draw = () => {
-        // p.clear(255, 255, 255, 0);
         p.background(bgColor);
         for (let i = particles.length - 1; i >= 0; i--) {
             let particle = particles[i];
