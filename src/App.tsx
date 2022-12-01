@@ -12,7 +12,12 @@ const App = () => {
     new p5(sketch(canvasDivElement), canvasDivElement);
   }, []);
 
-  return <div ref={canvasRef} className="p5" />;
+  return (
+    <>
+      <div ref={canvasRef} className="p5" />
+      <div className="tips">静止后单击一下鼠标左键！就会有后续啦</div>
+    </>
+  );
 };
 
 export default App;
