@@ -20,7 +20,7 @@ const mySketch = (parentElement: HTMLElement) => (p: p5) => {
         pg.text(word, sketch.width / 2, sketch.height / 2);
         pg.loadPixels();
 
-        let newColor: p5.Color = sketch.color(sketch.random(255), sketch.random(255), sketch.random(255));
+        let newColor: p5.Color = sketch.color(sketch.random(128, 255), sketch.random(176, 255), sketch.random(176, 255));
 
         let particleCount: number = particles.length;
         let particleIndex: number = 0;
@@ -31,8 +31,9 @@ const mySketch = (parentElement: HTMLElement) => (p: p5) => {
             coordsIndexes.push(i);
         }
 
-        // console.log(`coordsIndexes: ${coordsIndexes.length}`);
 
+        // sketch.pixelDensity(2);
+        // console.log(`pixelDensity: ${sketch.displayDensity()}`);
         for (let i = 0; i < coordsIndexes.length; i++) {
             let randomIndex = Math.floor(sketch.random(0, coordsIndexes.length));
             let coordIndex = coordsIndexes[randomIndex];
@@ -90,6 +91,7 @@ const mySketch = (parentElement: HTMLElement) => (p: p5) => {
         p.frameRate(30);
         p.createCanvas(parentElement.offsetWidth, 300);
         p.background(0, 0, 0);
+        p.pixelDensity(1);
         // words.push("why");
         words.push("落日西风吹尽")
 
