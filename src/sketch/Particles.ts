@@ -29,7 +29,7 @@ export default class Particle {
         this.closeEnoughTarget = 50;
         this.maxSpeed = 4;
         this.maxForce = 0.1;
-        this.particleSize = 5;
+        this.particleSize = 9;
         this.isKilled = false;
 
         this.startColor = this.sketch.color(0);
