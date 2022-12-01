@@ -14,7 +14,8 @@ const mySketch = (parentElement: HTMLElement) => (p: p5) => {
         let pg: p5.Graphics = sketch.createGraphics(sketch.width, sketch.height);
         pg.background(0);
         pg.fill(255);
-        pg.textSize(150);
+        const fontSize: number = Math.floor(sketch.width / 8) > 150 ? 150 : Math.floor(sketch.width / 8);
+        pg.textSize(fontSize);
         pg.textAlign("center", "center");
         pg.textFont(fontName);
         pg.text(word, sketch.width / 2, sketch.height / 2);
@@ -76,10 +77,10 @@ const mySketch = (parentElement: HTMLElement) => (p: p5) => {
 
     const controlPlay = () => {
         console.log(particles.length);
-        for (let i = 0; i < words.length; i++) {
+        for (let i = 0; i < words.length - 1; i++) {
             setTimeout(function () {
-                displayWord(words[i], p);
-            }, i * 6000);
+                displayWord(words[i + 1], p);
+            }, i * 9000);
         }
     }
 
