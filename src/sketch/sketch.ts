@@ -1,28 +1,45 @@
 import p5 from "p5";
 import { generateRandomLocation } from "./Utils";
 import Particle from "./Particles";
+// import fontFile from "../assets/fonts/HYSWSS.ttf";
+import fontFile from "../assets/fonts/lingfeijin.ttf";
+// import sketch from ".";
+// import {} from ""
 
 const mySketch = (parentElement: HTMLElement) => (p: p5) => {
     let particles: Particle[] = [];
     let pixelSteps: number = 9;
     let words: string[] = [];
     let wordIndex: number = 0;
-    let fontName: string = "Arial";
+    let fontName: p5.Font;
     let bgColor: p5.Color = p.color(20, 100);
 
     const displayWord = (word: string, sketch: p5) => {
+        const wordsTemp: string[] = word.split(/，|。|、|\n/);
+        const colorNums: number = 5;
+        const maxFontSize: number = 200;
+        // console.log(wordsTemp);
+
         let pg: p5.Graphics = sketch.createGraphics(sketch.width, sketch.height);
         pg.background(0);
-        pg.fill(255);
-        const fontSize: number = Math.floor(sketch.width / 8) > 150 ? 150 : Math.floor(sketch.width / 8);
+        pg.fill(255, 255, 0);
+        const fontSize: number = Math.floor(sketch.width / 4) > maxFontSize ? maxFontSize : Math.floor(sketch.width / 8);
         pg.textSize(fontSize);
         pg.textAlign("center", "center");
         pg.textFont(fontName);
-        pg.text(word, sketch.width / 2, sketch.height / 2);
+        // pg.textWrap(sketch.CHAR);
+        // console.log(fontName);
+
+        pg.text(wordsTemp[0], sketch.width / 2, sketch.height / 4);
+        pg.text(wordsTemp[1], sketch.width / 2, 2 * sketch.height / 3);
         pg.loadPixels();
+        // sketch.image(pg, 0, 0);
+        const newColors: p5.Color[] = [];
 
-        let newColor: p5.Color = sketch.color(sketch.random(128, 255), sketch.random(176, 255), sketch.random(176, 255));
-
+        for (let i = 0; i < colorNums; i++) {
+            let newColor: p5.Color = sketch.color(sketch.random(128, 255), sketch.random(176, 255), sketch.random(176, 255));
+            newColors.push(newColor);
+        }
         let particleCount: number = particles.length;
         let particleIndex: number = 0;
 
@@ -58,7 +75,7 @@ const mySketch = (parentElement: HTMLElement) => (p: p5) => {
                 }
 
                 newParticle.startColor = sketch.lerpColor(newParticle.startColor, newParticle.targetColor, newParticle.colorWeight);
-                newParticle.targetColor = newColor;
+                newParticle.targetColor = newColors[Math.floor(Math.random() * colorNums)];
                 newParticle.colorWeight = 0;
                 newParticle.target.x = x;
                 newParticle.target.y = y;
@@ -77,22 +94,25 @@ const mySketch = (parentElement: HTMLElement) => (p: p5) => {
 
     const controlPlay = () => {
         console.log(particles.length);
-        for (let i = 0; i < words.length - 1; i++) {
-            setTimeout(function () {
-                displayWord(words[i + 1], p);
-            }, i * 9000);
-        }
+        // for (let i = 0; i < words.length - 1; i++) {
+        //     setTimeout(function () {
+        //         displayWord(words[i + 1], p);
+        //     }, i * 9000);
+        // }
+    }
+
+    p.preload = () => {
+        fontName = p.loadFont(fontFile);
     }
 
     p.setup = () => {
         p.frameRate(30);
-        p.createCanvas(parentElement.offsetWidth, 300);
+        p.createCanvas(parentElement.offsetWidth, 600);
         p.background(0, 0, 0);
         p.pixelDensity(1);
-        words.push("落日西风吹尽");
-        words.push("残山新雪初飘");
-        words.push("年少光阴易度");
-        words.push("尊前愁绪难消");
+        words.push("年少光阴易度\n尊前愁绪难消");
+        words.push("落日西风吹尽\n残山新雪初飘");
+
 
         displayWord(words[wordIndex], p);
     }
