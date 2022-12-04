@@ -7,6 +7,7 @@ export default class Particle {
     velocity: p5.Vector;
     acceleration: p5.Vector;
     target: p5.Vector;
+    mouseForce: p5.Vector;
 
     closeEnoughTarget: number;
     maxSpeed: number;
@@ -25,11 +26,12 @@ export default class Particle {
         this.velocity = this.sketch.createVector(0, 0);
         this.acceleration = this.sketch.createVector(0, 0);
         this.target = this.sketch.createVector(0, 0);
+        this.mouseForce = this.sketch.createVector(0, 0);
 
         this.closeEnoughTarget = 50;
-        this.maxSpeed = 4;
-        this.maxForce = 0.1;
-        this.particleSize = 9;
+        this.maxSpeed = 0;
+        this.maxForce = 0;
+        this.particleSize = 0;
         this.isKilled = false;
 
         this.startColor = this.sketch.color(0);
@@ -45,20 +47,35 @@ export default class Particle {
             proximityMult = distance / this.closeEnoughTarget;
         }
 
-        let towardsTarget = this.sketch.createVector(this.target.x, this.target.y);
+        // calculate the direction to target point
+        const towardsTarget: p5.Vector = this.sketch.createVector(this.target.x, this.target.y);
         towardsTarget.sub(this.location);
         towardsTarget.normalize();
         towardsTarget.mult(this.maxSpeed * proximityMult);
 
-        let steer = this.sketch.createVector(towardsTarget.x, towardsTarget.y);
+        // if the point has velocity
+        // by this operation can change the direction of velocity
+
+        // towardsTarget.sub(this.velocity);
+        // towardsTarget.normalize();
+        // towardsTarget.mult(this.maxForce);
+        const steer: p5.Vector = this.sketch.createVector(towardsTarget.x, towardsTarget.y);
         steer.sub(this.velocity);
         steer.normalize();
         steer.mult(this.maxForce);
-        this.acceleration.add(steer);
 
+        // console.log(steer.mag());
+
+        // apply force
+        steer.add(this.mouseForce);
+        this.acceleration.add(steer);
+        // this.acceleration.add(this.mouseForce);
+
+        // apply acceleration
         this.velocity.add(this.acceleration);
         this.location.add(this.velocity);
         this.acceleration.mult(0);
+        this.mouseForce.mult(0);
     }
 
     display = () => {
@@ -72,7 +89,39 @@ export default class Particle {
         }
     }
 
+    mouseInteract = () => {
+        const previousMouseX: number = this.sketch.pmouseX;
+        const previousMouseY: number = this.sketch.pmouseY;
+
+        const currentMouseX: number = this.sketch.mouseX;
+        const currentMouseY: number = this.sketch.mouseY;
+
+        if (previousMouseX !== currentMouseX || previousMouseY !== currentMouseY) {
+            const mouse = this.sketch.createVector(currentMouseX, currentMouseY);
+            this.mouseForce = this.calcVector(mouse);
+            // console.log(this.mouseForce);
+        }
+    }
+
+    calcVector = (target: p5.Vector): p5.Vector => {
+        const desired = target.sub(this.location);
+        const desiredLength = desired.mag();
+
+        if (desiredLength < this.closeEnoughTarget * 2) {
+            desired.setMag(this.maxSpeed);
+            desired.mult(-1);
+            const steer = desired.sub(this.velocity);
+            // desired.mult(0);
+
+            steer.limit(0.9);
+            // console.log(`steer: ${steer.mag()}`);
+            return steer;
+        }
+        return this.sketch.createVector(0, 0);
+    }
+
     run = () => {
+        this.mouseInteract();
         this.move();
         this.display();
     }
