@@ -12,12 +12,12 @@ const mySketch = (parentElement: HTMLElement) => (p: p5) => {
     let words: string[] = [];
     let wordIndex: number = 0;
     let fontName: p5.Font;
-    let bgColor: p5.Color = p.color(20, 100);
+    let bgColor: p5.Color = p.color(20, 50);
 
     const displayWord = (word: string, sketch: p5) => {
         const wordsTemp: string[] = word.split(/，|。|、|\n/);
         const colorNums: number = 5;
-        const maxFontSize: number = 200;
+        const maxFontSize: number = 180;
         // console.log(wordsTemp);
 
         let pg: p5.Graphics = sketch.createGraphics(sketch.width, sketch.height);
@@ -34,6 +34,11 @@ const mySketch = (parentElement: HTMLElement) => (p: p5) => {
         pg.text(wordsTemp[1], sketch.width / 2, 2 * sketch.height / 3);
         pg.loadPixels();
         // sketch.image(pg, 0, 0);
+        // console.log(sketch.width * sketch.height);
+
+        // console.log(pg.pixels.length);
+
+
         const newColors: p5.Color[] = [];
 
         for (let i = 0; i < colorNums; i++) {
@@ -48,6 +53,8 @@ const mySketch = (parentElement: HTMLElement) => (p: p5) => {
         for (let i = 0; i < (sketch.width * sketch.height); i += pixelSteps) {
             coordsIndexes.push(i);
         }
+        // console.table(coordsIndexes);
+
 
         for (let i = 0; i < coordsIndexes.length; i++) {
             let randomIndex: number = Math.floor(sketch.random(0, coordsIndexes.length));
@@ -56,7 +63,7 @@ const mySketch = (parentElement: HTMLElement) => (p: p5) => {
 
             if (pg.pixels[coordIndex * 4] !== 0) {
                 let x: number = coordIndex % sketch.width;
-                let y: number = coordIndex / sketch.width;
+                let y: number = Math.floor(coordIndex / sketch.width);
                 let newParticle: Particle = new Particle(sketch);
 
                 if (particleIndex < particleCount) {
@@ -68,7 +75,7 @@ const mySketch = (parentElement: HTMLElement) => (p: p5) => {
                     newParticle.location.x = randomLocation.x;
                     newParticle.location.y = randomLocation.y;
                     newParticle.maxSpeed = sketch.random(2, 5);
-                    newParticle.maxForce = newParticle.maxSpeed * 0.025;
+                    newParticle.maxForce = sketch.random(0.3, 0.6);
                     newParticle.particleSize = sketch.random(3, 6);
                     newParticle.colorBlendRate = sketch.random(0.0025, 0.03);
                     particles.push(newParticle);
@@ -82,7 +89,7 @@ const mySketch = (parentElement: HTMLElement) => (p: p5) => {
             }
         }
 
-        console.log(`particleCount: ${particles.length}`);
+        // console.log(`particleCount: ${particles.length}`);
 
         if (particleIndex < particleCount) {
             for (let i = particleIndex; i < particleCount; i++) {
@@ -110,6 +117,8 @@ const mySketch = (parentElement: HTMLElement) => (p: p5) => {
         p.createCanvas(parentElement.offsetWidth, 600);
         p.background(0, 0, 0);
         p.pixelDensity(1);
+        // words.push("g\n ")
+
         words.push("年少光阴易度\n尊前愁绪难消");
         words.push("落日西风吹尽\n残山新雪初飘");
 
