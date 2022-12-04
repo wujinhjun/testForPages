@@ -11,3 +11,18 @@ export const generateRandomLocation = (_x: number, _y: number, _mag: number, ske
 
     return location;
 }
+
+export const dealListForPoem = (str: string): string[] => {
+    const words: string[] = [];
+    let n = str.split(/，|。|、|\n/);
+
+    for (let i of n) {
+        i.trim();
+        if (i === "") {
+            continue;
+        }
+        words.push(i);
+    }
+
+    return words;
+}
