@@ -3,6 +3,8 @@ import "./styles/App.scss";
 import sketch from "./sketch";
 import p5 from "p5";
 
+import Header from "./components/Header";
+
 const App = () => {
   const canvasRef = useRef(null);
 
@@ -14,6 +16,7 @@ const App = () => {
 
   return (
     <>
+      <Header />
       <div ref={canvasRef} className="p5" />
       <div className="tips">静止后单击一下鼠标左键！就会有后续啦</div>
     </>
