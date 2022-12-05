@@ -5,7 +5,7 @@ import fontFile from "../assets/fonts/lingfeijin.ttf";
 
 const mySketch = (parentElement: HTMLElement) => (p: p5) => {
     let particles: Particle[] = [];
-    let pixelSteps: number = 6;
+    let pixelSteps: number = 16;
     let words: string[] = [];
     let wordIndex: number = 0;
     let fontName: p5.Font;
@@ -41,8 +41,9 @@ const mySketch = (parentElement: HTMLElement) => (p: p5) => {
         for (let i = 0; i < (sketch.width * sketch.height); i += pixelSteps) {
             coordsIndexes.push(i);
         }
+        const nums: number = coordsIndexes.length;
 
-        for (let i = 0; i < coordsIndexes.length; i++) {
+        for (let i = 0; i < nums; i++) {
             let randomIndex: number = Math.floor(sketch.random(0, coordsIndexes.length));
             let coordIndex: number = coordsIndexes[randomIndex];
             coordsIndexes.splice(randomIndex, 1);
@@ -85,10 +86,11 @@ const mySketch = (parentElement: HTMLElement) => (p: p5) => {
 
     const controlPlay = () => {
         console.log(particles.length);
+        displayWord(words[(wordIndex + 1) % words.length], p)
         // for (let i = 0; i < words.length - 1; i++) {
         //     setTimeout(function () {
-        //         displayWord(words[i + 1], p);
-        //     }, i * 9000);
+        //         displayWord(words[i], p);
+        //     }, i * 6000);
         // }
     }
 
@@ -105,6 +107,7 @@ const mySketch = (parentElement: HTMLElement) => (p: p5) => {
         words.push("落日西风吹尽\n残山新雪初飘");
 
         displayWord(words[wordIndex], p);
+        // controlPlay();
     }
 
     p.draw = () => {
