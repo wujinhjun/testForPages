@@ -6,7 +6,7 @@ import { text } from "stream/consumers";
 
 const mySketch = (parentElement: HTMLElement) => (p: p5) => {
     let particles: Particle[] = [];
-    let pixelSteps: number = 16;
+    let pixelSteps: number = 12;
     let words: string[] = [];
     let wordIndex: number = 0;
     let fontName: p5.Font;
@@ -86,15 +86,9 @@ const mySketch = (parentElement: HTMLElement) => (p: p5) => {
     }
 
     const controlPlay = () => {
-        console.log(particles.length);
+        // console.log(particles.length);
         wordIndex = (wordIndex + 1) % words.length;
         displayWord(words[wordIndex], p)
-        // displayBackground(words[(wordIndex + 1) % words.length], p);
-        // for (let i = 0; i < words.length - 1; i++) {
-        //     setTimeout(function () {
-        //         displayWord(words[i], p);
-        //     }, i * 6000);
-        // }
     }
 
     const displayBackground = (word: string, sketch: p5) => {
@@ -129,7 +123,6 @@ const mySketch = (parentElement: HTMLElement) => (p: p5) => {
         words.push("披蓑自此扮逍遥\n不必天涯浪荡");
         displayWord(words[wordIndex], p);
         displayBackground(words[wordIndex], p);
-        // controlPlay();
     }
 
     p.draw = () => {
