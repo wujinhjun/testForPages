@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import Header from "./components/Header";
 import Sketch from "./components/Sketch";
@@ -9,7 +9,9 @@ const App = () => {
   return (
     <>
       <Header />
-      <Sketch />
+      <div className="sketch-wrapper">
+        <Sketch />
+      </div>
       <div className="tips">静止后单击一下鼠标左键！就会有后续啦</div>
     </>
   );
