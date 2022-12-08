@@ -2,7 +2,6 @@ import p5 from "p5";
 import { generateRandomLocation } from "./Utils";
 import Particle from "./Particles";
 import fontFile from "../assets/fonts/lingfeijin.ttf";
-import { text } from "stream/consumers";
 
 const mySketch = (parentElement: HTMLElement) => (p: p5) => {
     let particles: Particle[] = [];
@@ -21,25 +20,29 @@ const mySketch = (parentElement: HTMLElement) => (p: p5) => {
         let pg: p5.Graphics = sketch.createGraphics(sketch.width, sketch.height);
         pg.background(0);
         pg.fill(255, 255, 0);
-        const fontSize: number = Math.floor(sketch.width / 6) > maxFontSize ? maxFontSize : Math.floor(sketch.width / 8);
+        const fontSize: number = Math.floor(pg.width / 6) > maxFontSize ? maxFontSize : Math.floor(pg.width / 6);
         pg.textSize(fontSize);
         pg.textAlign("center", "center");
         pg.textFont(fontName);
 
-        pg.text(wordsTemp[0], sketch.width / 2, sketch.height / 5);
-        pg.text(wordsTemp[1], sketch.width / 2, 3 * sketch.height / 5);
+        pg.text(wordsTemp[0], pg.width / 2, pg.height / 5);
+        pg.text(wordsTemp[1], pg.width / 2, 3 * pg.height / 5);
         pg.loadPixels();
+        // sketch.image(pg, 0, 0);
+        // console.log(pg.width);
+        // console.log(pg.height);
 
         for (let i = 0; i < colorNums; i++) {
             let newColor: p5.Color = sketch.color(sketch.random(128, 255), sketch.random(176, 255), sketch.random(176, 255));
             newColors.push(newColor);
         }
+
         let particleCount: number = particles.length;
         let particleIndex: number = 0;
 
         let coordsIndexes: number[] = [];
 
-        for (let i = 0; i < (sketch.width * sketch.height); i += pixelSteps) {
+        for (let i = 0; i < (pg.width * pg.height); i += pixelSteps) {
             coordsIndexes.push(i);
         }
         const nums: number = coordsIndexes.length;
@@ -50,8 +53,8 @@ const mySketch = (parentElement: HTMLElement) => (p: p5) => {
             coordsIndexes.splice(randomIndex, 1);
 
             if (pg.pixels[coordIndex * 4] !== 0) {
-                let x: number = coordIndex % sketch.width;
-                let y: number = Math.floor(coordIndex / sketch.width);
+                let x: number = coordIndex % pg.width;
+                let y: number = Math.floor(coordIndex / pg.width);
                 let newParticle: Particle = new Particle(sketch);
 
                 if (particleIndex < particleCount) {
@@ -59,7 +62,7 @@ const mySketch = (parentElement: HTMLElement) => (p: p5) => {
                     newParticle.isKilled = false;
                     particleIndex += 1;
                 } else {
-                    let randomLocation: p5.Vector = generateRandomLocation(sketch.width / 2, sketch.height / 2, (sketch.width + sketch.height) / 2, sketch);
+                    let randomLocation: p5.Vector = generateRandomLocation(pg.width / 2, pg.height / 2, (pg.width + pg.height) / 2, sketch);
                     newParticle.location.x = randomLocation.x;
                     newParticle.location.y = randomLocation.y;
                     newParticle.maxSpeed = sketch.random(2, 5);
@@ -86,9 +89,14 @@ const mySketch = (parentElement: HTMLElement) => (p: p5) => {
     }
 
     const controlPlay = () => {
-        // console.log(particles.length);
-        wordIndex = (wordIndex + 1) % words.length;
-        displayWord(words[wordIndex], p)
+        setInterval(() => {
+            controlIndex(wordIndex + 1);
+        }, 16000);
+    }
+
+    const controlIndex = (i: number) => {
+        wordIndex = i % words.length;
+        displayWord(words[wordIndex], p);
     }
 
     const displayBackground = (word: string, sketch: p5) => {
@@ -113,7 +121,9 @@ const mySketch = (parentElement: HTMLElement) => (p: p5) => {
 
     p.setup = () => {
         p.frameRate(30);
-        p.createCanvas(parentElement.offsetWidth, 600);
+        const width = Math.floor(parentElement.offsetWidth > 1250 ? 1250 : parentElement.offsetWidth);
+        const height = Math.floor(width / 2);
+        p.createCanvas(width, height);
         p.background(0, 0, 0);
         p.pixelDensity(1);
 
@@ -121,6 +131,7 @@ const mySketch = (parentElement: HTMLElement) => (p: p5) => {
         words.push("几曾回首羡渔樵\n不必天涯浪荡");
         words.push("年少光阴易度\n尊前愁绪难消");
         words.push("披蓑自此扮逍遥\n不必天涯浪荡");
+        controlPlay();
         displayWord(words[wordIndex], p);
         displayBackground(words[wordIndex], p);
     }
@@ -139,9 +150,9 @@ const mySketch = (parentElement: HTMLElement) => (p: p5) => {
         }
     }
 
-    p.mouseClicked = () => {
-        controlPlay();
-    }
+    // p.mouseClicked = () => {
+    //     controlPlay();
+    // }
 }
 
 export default mySketch;
