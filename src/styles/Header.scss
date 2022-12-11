@@ -84,7 +84,7 @@
             border-radius: 3px;
             width: 0px;
             background: base.$other-color;
-            transition: width 0.2s;
+            transition: width 0.5s ease-in-out;
             transform: translate3d(16px, 0, 0);
           }
         }
@@ -93,7 +93,7 @@
           .temp {
             .line {
               width: calc(100% - 32px);
-              transition: width 0.5s;
+              transition: width 0.5s ease-in-out;
             }
           }
         }
