@@ -1,6 +1,7 @@
 {
-  "name": "wujinhjun-website",
+  "name": "wujinhjun-webpage",
   "version": "0.1.0",
+  "homepage": ".",
   "private": true,
   "scripts": {
     "dev": "next dev",
