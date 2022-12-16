@@ -9,7 +9,7 @@ const mySketch = (parentElement: HTMLElement) => (p: p5) => {
     let words: string[] = [];
     let wordIndex: number = 0;
     let fontName: p5.Font;
-    let bgColor: p5.Color = p.color(20, 50);
+    let bgColor: p5.Color = p.color(0, 50);
 
     const displayWord = (word: string, sketch: p5) => {
         const wordsTemp: string[] = word.split(/，|。|、|\n/);
