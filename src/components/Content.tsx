@@ -1,9 +1,12 @@
+import AboutMe from "../components/AboutMe";
 import "../styles/Content.scss";
 
 const Content = () => {
   return (
     <>
-      <div className="content-wrapper">content</div>
+      <div className="content-wrapper">
+        <AboutMe />
+      </div>
     </>
   );
 };
