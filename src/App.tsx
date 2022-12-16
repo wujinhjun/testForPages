@@ -13,7 +13,7 @@ const App = () => {
       <div className="sketch-wrapper">
         <Sketch />
       </div>
-      {/* <div className="gap-color" /> */}
+      <div className="gap-color" />
       <Content />
     </>
   );
