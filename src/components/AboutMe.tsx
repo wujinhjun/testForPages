@@ -17,6 +17,8 @@ const AboutMe = () => {
             <br />
           </div>
           <div className="card">openCV我一年前就会了啊</div>
+          <div className="card">openCV我一年前就会了啊</div>
+          <div className="card">openCV我一年前就会了啊</div>
         </div>
       </div>
     </>
