@@ -1,0 +1,22 @@
+// color
+$main-color: #58a7ff;
+$main-color-hover: rgba(115, 181, 255, 0.8);
+$main-color-active: #0075f6;
+
+$second-color: #ffce76;
+
+$assist-color: #005ac3;
+$text-color: #1d1919;
+$back-color: #ffffff;
+
+// font
+@mixin baseText {
+  font-family: PingFang SC;
+  font-weight: 400;
+}
+
+@mixin header {
+  @include baseText();
+  font-size: 20px;
+  line-height: 30px;
+}
