@@ -1,0 +1,64 @@
+@use "../styles/variable" as variable;
+
+.headerWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 32px;
+  width: 100%;
+  max-width: 1200px;
+
+  .leftPanel {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .button_wrapper {
+      padding: 10px 24px;
+      transition: all 0.1s linear;
+      .text {
+        @include variable.header;
+        color: variable.$back-color;
+        text-decoration: none;
+      }
+
+      .bottom_line {
+        height: 2px;
+        width: 0;
+        border-radius: 2px;
+        background-color: transparent;
+        transition: all 0.3s linear;
+      }
+
+      &.active,
+      &:hover {
+        transition: all 0.1s linear;
+        transform: scale(1.2, 1.2);
+
+        .text {
+          color: variable.$back-color;
+        }
+
+        .bottom_line {
+          transition: all 0.3s linear;
+          width: 100%;
+          background-color: variable.$back-color;
+        }
+      }
+    }
+  }
+
+  .rightPanel {
+    .icon {
+      font-weight: 500;
+      color: variable.$main-color;
+
+      font-size: 96px;
+    }
+  }
+
+  @media (max-width: 1260px) {
+    padding: 0 24px;
+  }
+}
