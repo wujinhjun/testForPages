@@ -1,0 +1,20 @@
+.header_section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back_triangle {
+  position: absolute;
+  top: 0;
+
+  z-index: 0;
+  background: url("../public/assets/back-tri.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 67%;
+  max-width: 1600px;
+  aspect-ratio: 0.62;
+  margin-right: 650px;
+  box-sizing: border-box;
+}
