@@ -4,7 +4,6 @@ import clsx from "clsx";
 import useInterval from "@/utils/useInterval";
 
 import React, { useState, useEffect, useRef } from "react";
-import { CSSTransition } from "react-transition-group";
 
 interface IButton {
   text: string;
@@ -24,20 +23,20 @@ interface IBannerContent {
 
 const contents: IBannerContent[] = [
   {
-    src: "https://raw.githubusercontent.com/wujinhjun/wujinhjun-pic/main/202303062103036.png",
+    src: "https://raw.githubusercontent.com/wujinhjun/wujinhjun-pic/main/202303062349517.png",
     buttonText: "我的社交账号",
     header: "你好,\n在下魏堃",
     content: "有人说（沃兹基硕德）：不喜欢设计的诗人不是一个好前端",
   },
   {
-    src: "https://raw.githubusercontent.com/wujinhjun/wujinhjun-pic/main/202303062105738.png",
+    src: "https://raw.githubusercontent.com/wujinhjun/wujinhjun-pic/main/202303062349518.png",
     buttonText: "我的社交账号",
     header: "在程序的世界里，\n我是前端",
     content:
       "我的技术栈是typescript+react+node.js\n写过网站，写过基于node的命令行工具，在曾经做过creative coding，也开发过组件库。",
   },
   {
-    src: "https://raw.githubusercontent.com/wujinhjun/wujinhjun-pic/main/202301052104388.png",
+    src: "https://raw.githubusercontent.com/wujinhjun/wujinhjun-pic/main/202303062349519.png",
     buttonText: "我的社交账号",
     header: "在文字的海洋里，\n我是诗人",
     content:
