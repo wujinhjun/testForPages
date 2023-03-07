@@ -1,6 +1,6 @@
-import styles from "./Banner.module.scss";
 import Image from "next/image";
 import clsx from "clsx";
+import styles from "./Banner.module.scss";
 import useInterval from "@/utils/useInterval";
 
 import React, { useState, useEffect, useRef } from "react";
@@ -19,6 +19,10 @@ interface IBannerContent {
   buttonText: string;
   header: string;
   content: string;
+}
+
+interface ITime {
+  progress: number;
 }
 
 const contents: IBannerContent[] = [
@@ -45,10 +49,14 @@ const contents: IBannerContent[] = [
 ];
 
 export default function Banner() {
+  const autoPlaySpeed = 5000;
+  const animationTime = 500;
+  // components
+  //   my button
   const Button = ({ text }: IButton) => {
     return <div className={styles.button}>{text}</div>;
   };
-
+  //  my dots
   const Dots = ({ count, clickPage }: IDots) => {
     const dotsContent: React.ReactNode[] = [];
 
@@ -70,6 +78,22 @@ export default function Banner() {
     return <div className={styles.dots}>{dotsContent}</div>;
   };
 
+  //   my timeline
+  const Timeline = ({ progress }: ITime) => {
+    return (
+      <div className={styles.timeline}>
+        <div
+          style={{
+            animationDuration: `${autoPlaySpeed}ms`,
+            transitionDuration: `${autoPlaySpeed}ms`,
+            width: `100%`,
+          }}
+          className={styles.timelineActive}
+        ></div>
+      </div>
+    );
+  };
+
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [previousIndex, setPreviousIndex] = useState<number>(currentIndex);
   const [switching, setSwitching] = useState<boolean>(false);
@@ -80,12 +104,6 @@ export default function Banner() {
   );
 
   const contentsLength = contents.length;
-
-  const autoPlaySpeed = 5000;
-  const animationTime = 500;
-
-  const prevIndex = getValidIndex(currentIndex - 1);
-  const nextIndex = getValidIndex(currentIndex + 1);
 
   const resetInterval = useInterval(() => {
     slideTo({ targetIndex: getValidIndex(currentIndex + 1) });
@@ -112,9 +130,6 @@ export default function Banner() {
     isNegative?: boolean;
     resetPlayInterval?: boolean;
   }) {
-    console.log(`curr: ${currentIndex}`);
-    console.log(`switch: ${switching}`);
-
     if (!switching && targetIndex !== currentIndex) {
       setSwitching(true);
       setCurrentIndex(targetIndex);
@@ -161,8 +176,6 @@ export default function Banner() {
           })}
         >
           {contents.map((item, index) => {
-            const isPrev = index === prevIndex;
-            const isNext = index === nextIndex;
             const isCur = index === currentIndex;
             return (
               <section
@@ -197,14 +210,11 @@ export default function Banner() {
       </section>
 
       {/* the right panel for introduction */}
-
       <div className={clsx({ [styles.intro]: true })}>
         <div style={{ whiteSpace: "pre-line" }} className={styles.header}>
           {contents[currentIndex].header}
         </div>
-        <div className={styles.timeline}>
-          <div className={styles.timelineActive}></div>
-        </div>
+        <Timeline progress={100}></Timeline>
         <div className={styles.content}>{contents[currentIndex].content}</div>
         <Button text={contents[currentIndex].buttonText}></Button>
       </div>

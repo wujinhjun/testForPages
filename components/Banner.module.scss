@@ -1,14 +1,14 @@
 @use "../styles/variable" as variable;
 
-@keyframes timeline {
-  from {
-    width: 0;
-  }
+// @keyframes timeline {
+//   from {
+//     width: 0;
+//   }
 
-  to {
-    width: 100%;
-  }
-}
+//   to {
+//     width: 100%;
+//   }
+// }
 
 @mixin animation-generator($dire, $entry) {
   animation: slide-#{$dire}-#{$entry};
@@ -75,6 +75,7 @@
     transform: translateX(100%);
   }
 }
+
 .wrapper {
   width: 100%;
   padding-top: 120px;
@@ -173,7 +174,9 @@
         height: 100%;
         background-color: variable.$assist-color;
         border-radius: 8px;
-        animation: timeline 5s infinite linear;
+        // animation-name: timeline;
+        // animation-timing-function: linear;
+        // animation-iteration-count: infinite;
       }
     }
 
