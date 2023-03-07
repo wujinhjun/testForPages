@@ -1,0 +1,184 @@
+@use "../styles/variable" as variable;
+
+.contentsWrapper {
+  width: 100%;
+
+  .titleWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 8px 16px;
+    width: 100%;
+    cursor: pointer;
+
+    .title {
+      @include variable.baseText;
+      color: variable.$second-color;
+      font-weight: 700;
+      font-size: 72px;
+      line-height: 144px;
+      white-space: nowrap;
+      width: 4em;
+      overflow: hidden;
+
+      animation: typing 2s steps(4), caret 0.5s steps(1) infinite;
+
+      border-right: 3px solid transparent;
+    }
+  }
+
+  .contentWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 8px 16px;
+    gap: 64px;
+
+    .sectionTitleWrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-end;
+      width: 288px;
+
+      .sectionTitle {
+        @include variable.baseText;
+        font-weight: 700;
+        font-size: 64px;
+        line-height: 150%;
+        color: variable.$second-color;
+      }
+
+      .line {
+        width: 100%;
+        height: 8px;
+        border-radius: 8px;
+        background-color: variable.$main-color;
+      }
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      gap: 64px;
+
+      .contentSection {
+        position: relative;
+        padding-right: 144px;
+        cursor: pointer;
+
+        .background {
+          width: 400px;
+          height: 225px;
+          border-radius: 32px;
+          background-color: aqua;
+          box-shadow: 32px 32px 80px rgba(0, 0, 0, 0.15);
+          transition: all 0.2s ease-in-out;
+
+          &:hover {
+            transform: translateY(-12px);
+            transition: all 0.2s ease-in-out;
+          }
+        }
+
+        .intro {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 10px;
+          background: rgba(255, 255, 255, 0.85);
+          box-shadow: 16px 16px 64px rgba(0, 0, 0, 0.25);
+          border-radius: 32px;
+          width: 400px;
+          height: 128px;
+          transform: translateX(96px) translateY(-96px);
+          padding: 0 24px;
+
+          .introText {
+            @include variable.baseText;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            .introHeader {
+              font-weight: 600;
+              font-size: 24px;
+              line-height: 36px;
+              color: variable.$text-color;
+              text-decoration: none;
+              transition: all 0.2s;
+
+              &:hover {
+                color: variable.$second-color;
+                transform-origin: left top;
+                transform: scale(1.1, 1.1);
+                transition: all 0.2s;
+              }
+            }
+
+            .introContent {
+              display: flex;
+              flex-direction: column;
+              align-items: flex-start;
+              gap: 4px;
+              .introDesc,
+              .introTech {
+                font-weight: 600;
+                font-size: 20px;
+                line-height: 24px;
+              }
+              .introDesc {
+                color: variable.$text-color;
+              }
+
+              .introTech {
+                color: #9a9a9a;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+}
+
+@keyframes caret {
+  50% {
+    border-right-color: variable.$second-color;
+  }
+}
+
+@keyframes flipInX {
+  from {
+    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    animation-timing-function: ease-in;
+    opacity: 0;
+  }
+
+  40% {
+    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    animation-timing-function: ease-in;
+  }
+
+  60% {
+    transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    opacity: 1;
+  }
+
+  80% {
+    transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+  }
+
+  to {
+    transform: perspective(400px);
+  }
+}
