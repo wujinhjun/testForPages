@@ -1,12 +1,14 @@
 import Head from "next/head";
 import Header from "./Header";
 import styles from "./Layout.module.scss";
+import clsx from "clsx";
 
 interface Props {
   children: React.ReactNode;
+  Poem?: boolean;
 }
 
-export default function Layout({ children }: Props) {
+export default function Layout({ children, Poem }: Props) {
   return (
     <>
       <Head>
@@ -18,12 +20,17 @@ export default function Layout({ children }: Props) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <section className={styles.header_section}>
-        <Header />
+        <Header Poem={Poem} />
       </section>
 
       <>
         {children}
-        <div className={styles.back_triangle}></div>
+        <div
+          className={clsx({
+            [styles.back_triangle]: !Poem,
+            [styles.back_triangle_2]: Poem,
+          })}
+        ></div>
       </>
     </>
   );

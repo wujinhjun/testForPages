@@ -4,7 +4,8 @@
   justify-content: center;
 }
 
-.back_triangle {
+.back_triangle,
+.back_triangle_2 {
   position: absolute;
   top: 0;
 
@@ -17,4 +18,8 @@
   aspect-ratio: 0.62;
   margin-right: 650px;
   box-sizing: border-box;
+}
+
+.back_triangle_2 {
+  background-image: url("../public/assets/back_tri_2.svg");
 }
