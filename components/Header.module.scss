@@ -47,6 +47,10 @@
         }
       }
     }
+
+    &.bottomLine {
+      border-bottom: 1px solid variable.$second-color;
+    }
   }
 
   .rightPanel {

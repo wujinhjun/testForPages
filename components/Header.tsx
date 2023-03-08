@@ -2,7 +2,8 @@ import Link from "next/link";
 import style from "./Header.module.scss";
 import type { Url } from "next/dist/shared/lib/router/router";
 import clsx from "clsx";
-import { CSSProperties, useState } from "react";
+import { CSSProperties, useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 const mapNavbar: IButton[] = [
   { text: "首页", link: "/" },
@@ -12,10 +13,17 @@ const mapNavbar: IButton[] = [
   { text: "关于我", link: "/me" },
 ];
 
-export default function Header() {
+export default function Header({ Poem }: { Poem?: boolean }) {
   const [curNav, setCurNav] = useState<Url>("/");
+  const location = useRouter();
 
   const NavbarButton = ({ text, link }: IButton) => {
+    useEffect(() => {
+      if (location.route === link) {
+        setCurNav(link);
+      }
+    });
+
     return (
       <div
         className={clsx({
@@ -36,7 +44,12 @@ export default function Header() {
 
   return (
     <div className={style.headerWrapper}>
-      <div className={style.leftPanel}>
+      <div
+        className={clsx({
+          [style.leftPanel]: true,
+          [style.bottomLine]: Poem,
+        })}
+      >
         {mapNavbar.map((item, index) => {
           return (
             <NavbarButton
