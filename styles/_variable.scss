@@ -9,6 +9,9 @@ $assist-color: #005ac3;
 $text-color: #1d1919;
 $back-color: #ffffff;
 
+$catalog-color: #f8f9f4;
+$catalog-color-hover: #f1f3e9;
+
 // font
 @mixin baseText {
   font-family: PingFang SC;
@@ -19,4 +22,15 @@ $back-color: #ffffff;
   @include baseText();
   font-size: 20px;
   line-height: 30px;
+}
+
+@font-face {
+  font-family: HY;
+  src: url("../public/font/HYChengXing.ttf");
+}
+
+@mixin poemText($fontSize, $lineHeight) {
+  font-family: HY;
+  font-size: $fontSize;
+  line-height: $lineHeight;
 }
