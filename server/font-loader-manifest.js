@@ -1,0 +1,1 @@
+self.__FONT_LOADER_MANIFEST={pages:{"/_app":[],"/":[],"/poem":[]},app:{},appUsingSizeAdjust:!1,pagesUsingSizeAdjust:!1};

@@ -1,0 +1,10 @@
+{
+  "pages": {
+    "/_app": [],
+    "/": [],
+    "/poem": []
+  },
+  "app": {},
+  "appUsingSizeAdjust": false,
+  "pagesUsingSizeAdjust": false
+}
