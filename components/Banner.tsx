@@ -160,7 +160,6 @@ export default function Banner() {
           alt="screen"
           width={755}
           height={510}
-          priority={false}
         />
       </section>
 
