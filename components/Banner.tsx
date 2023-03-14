@@ -2,7 +2,7 @@ import Image from "next/image";
 import clsx from "clsx";
 import styles from "./Banner.module.scss";
 import useInterval from "@/utils/useInterval";
-import { IButton, IDots, IBannerContent, ITime } from "@/utils/types";
+import type { IButton, IDots, IBannerContent, ITime } from "@/utils/types";
 
 import React, { useState, useEffect, useRef } from "react";
 

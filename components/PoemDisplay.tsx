@@ -1,5 +1,5 @@
 import styles from "./PoemDisplay.module.scss";
-import { IDisplay, IPoemCard, IItemRange } from "@/utils/types";
+import type { IDisplay, IPoemCard, IItemRange } from "@/utils/types";
 import List from "rc-virtual-list";
 import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
