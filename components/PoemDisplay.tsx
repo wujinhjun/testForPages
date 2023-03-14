@@ -1,5 +1,5 @@
 import styles from "./PoemDisplay.module.scss";
-import { IDisplay, IPoemCard } from "@/lib/types";
+import type { IDisplay, IPoemCard, IItemRange } from "@/utils/types";
 import List from "rc-virtual-list";
 import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
@@ -45,17 +45,10 @@ const Item = ({
   );
 };
 
-interface IItemRange {
-  id: string;
-  start: number;
-  end: number;
-}
-
 const PoemDisplay = ({ catalogs, contents }: IDisplay) => {
   const contentElements = useRef<Array<IItemRange>>([]);
   const ticking = useRef<boolean>(false);
   const [activeID, setActiveID] = useState<string>(catalogs[0].id);
-  const [activeContent, setActiveContent] = useState(false);
 
   const changeActiveID = (target: string) => {
     setActiveID(target);
@@ -66,6 +59,7 @@ const PoemDisplay = ({ catalogs, contents }: IDisplay) => {
     changeActiveID(targetID);
     const { offsetTop } = elementTemp;
     window.scrollTo({ top: offsetTop - 120 });
+    // elementTemp.scrollIntoView(true);
   };
 
   useEffect(() => {
@@ -100,6 +94,7 @@ const PoemDisplay = ({ catalogs, contents }: IDisplay) => {
 
       contentElements.current.push(itemTopRange);
     });
+    console.table(contentElements.current);
   }, [catalogs]);
 
   useEffect(() => {
