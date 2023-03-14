@@ -2,7 +2,7 @@ import { getAllPostDataContent, getPostsIDs } from "@/lib/poemLib";
 import PoemDisplay from "@/components/PoemDisplay";
 import styles from "@/styles/Home.module.scss";
 
-import type { IPoem, ICatalogs } from "@/lib/types";
+import type { IPoem, ICatalogs } from "@/utils/types";
 
 export default function Poem({ allPostsData }: IPoem) {
   //   console.log(allPostsData);
