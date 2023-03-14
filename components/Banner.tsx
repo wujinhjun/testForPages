@@ -2,34 +2,11 @@ import Image from "next/image";
 import clsx from "clsx";
 import styles from "./Banner.module.scss";
 import useInterval from "@/utils/useInterval";
-import type { IButton, IDots, IBannerContent, ITime } from "@/utils/types";
+import type { IButton, IDots, ITime, IBanner } from "@/utils/types";
 
 import React, { useState, useEffect, useRef } from "react";
 
-const contents: IBannerContent[] = [
-  {
-    src: "https://raw.githubusercontent.com/wujinhjun/wujinhjun-pic/main/202303062349517.png",
-    buttonText: "我的社交账号",
-    header: "你好,\n在下魏堃",
-    content: "有人说（沃兹基硕德）：不喜欢设计的诗人不是一个好前端",
-  },
-  {
-    src: "https://raw.githubusercontent.com/wujinhjun/wujinhjun-pic/main/202303062349518.png",
-    buttonText: "我的社交账号",
-    header: "在程序的世界里，\n我是前端",
-    content:
-      "我的技术栈是typescript+react+node.js\n写过网站，写过基于node的命令行工具，在曾经做过creative coding，也开发过组件库。",
-  },
-  {
-    src: "https://raw.githubusercontent.com/wujinhjun/wujinhjun-pic/main/202303062349519.png",
-    buttonText: "我的社交账号",
-    header: "在文字的海洋里，\n我是诗人",
-    content:
-      "在很多年前，我模仿着歌词开始了写现代诗\n在大学里，学了基础的格律，开始了古典诗词的创作",
-  },
-];
-
-export default function Banner() {
+export default function Banner({ contents }: IBanner) {
   const autoPlaySpeed = 5000;
   const animationTime = 500;
   // components

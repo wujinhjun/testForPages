@@ -2,15 +2,7 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import styles from "./HomeContent.module.scss";
 import Link from "next/link";
-import type { Url } from "next/dist/shared/lib/router/router";
-
-interface ICard {
-  backSrc?: string;
-  src?: Url;
-  header?: string;
-  description?: string;
-  tech?: string;
-}
+import { ICard, IHomeContent } from "@/utils/types";
 
 const SecondTitle = ({ text }: { text: string }) => {
   return (
@@ -21,30 +13,20 @@ const SecondTitle = ({ text }: { text: string }) => {
   );
 };
 
-const ContentCard = ({ backSrc, src, header, description, tech }: ICard) => {
+const ContentCard = ({ pic, tech, src, header, description }: ICard) => {
   return (
     <section className={styles.contentSection}>
       <div className={styles.background}>
-        <Image
-          alt="dev"
-          src="/assets/dev1.png"
-          width={400}
-          height={225}
-        ></Image>
+        <Image alt="dev" src={pic} width={400} height={225}></Image>
       </div>
       <div className={styles.intro}>
         <div className={styles.introText}>
-          <Link
-            href={"https://kool-kool.github.io/kool-ui"}
-            className={styles.introHeader}
-          >
-            Kool UI组件库
+          <Link href={src} className={styles.introHeader}>
+            {header}
           </Link>
           <div className={styles.introContent}>
-            <span className={styles.introDesc}>react 组件库</span>
-            <span className={styles.introTech}>
-              typescript+react+dumi+rollup
-            </span>
+            <span className={styles.introDesc}>{description}</span>
+            <span className={styles.introTech}>{tech}</span>
           </div>
         </div>
       </div>
@@ -52,7 +34,7 @@ const ContentCard = ({ backSrc, src, header, description, tech }: ICard) => {
   );
 };
 
-export default function HomeContent() {
+export default function HomeContent({ production }: IHomeContent) {
   return (
     <section className={styles.contentsWrapper}>
       <div id="title" className={styles.titleWrapper}>
@@ -61,9 +43,19 @@ export default function HomeContent() {
       <section className={styles.contentWrapper}>
         <SecondTitle text="开发"></SecondTitle>
         <section className={styles.cards}>
-          <ContentCard></ContentCard>
-          <ContentCard></ContentCard>
-          <ContentCard></ContentCard>
+          {production.map((item, index) => {
+            const { src, pic, header, description, tech } = item;
+            return (
+              <ContentCard
+                key={index}
+                src={src}
+                pic={pic}
+                header={header}
+                description={description}
+                tech={tech}
+              />
+            );
+          })}
         </section>
       </section>
       <div style={{ height: 800 }}></div>
