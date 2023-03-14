@@ -2,28 +2,9 @@ import Image from "next/image";
 import clsx from "clsx";
 import styles from "./Banner.module.scss";
 import useInterval from "@/utils/useInterval";
+import { IButton, IDots, IBannerContent, ITime } from "@/utils/types";
 
 import React, { useState, useEffect, useRef } from "react";
-
-interface IButton {
-  text: string;
-}
-
-interface IDots {
-  count: number;
-  clickPage: (index: number) => void;
-}
-
-interface IBannerContent {
-  src: string;
-  buttonText: string;
-  header: string;
-  content: string;
-}
-
-interface ITime {
-  progress: number;
-}
 
 const contents: IBannerContent[] = [
   {
@@ -156,7 +137,7 @@ export default function Banner() {
       <section className={styles.image}>
         <Image
           className={styles.screen}
-          src="/assets/screen.png"
+          src="https://raw.githubusercontent.com/wujinhjun/wujinhjun-pic/main/202303111133810.png"
           alt="screen"
           width={755}
           height={510}
