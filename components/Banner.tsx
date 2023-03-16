@@ -116,8 +116,11 @@ export default function Banner({ contents }: IBanner) {
           className={styles.screen}
           src="https://raw.githubusercontent.com/wujinhjun/wujinhjun-pic/main/202303111133810.png"
           alt="screen"
+          placeholder="blur"
+          blurDataURL={"/assets/dev1.png"}
           width={755}
           height={510}
+          priority
         />
       </section>
 
