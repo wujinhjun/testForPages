@@ -5,39 +5,40 @@ name: CI
 
 on:
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   CI:
     runs-on: ubuntu-latest
     steps:
-    - name: checkout repository
-      uses: actions/checkout@v3
+      - name: checkout repository
+        uses: actions/checkout@v3
 
-    - name: install node
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18.x'
-    
-    - name: install pnpm
-      uses: pnpm/action-setup@v2
-      with: 
-        version: 7
-        run_install: false
-    
-    - name: cache modules
-      id: cache-dependencies
-      uses: actions/cache@v3
-      with:
-        path: |
-          **/node_modules
-        key: ${{runner.os}}-${{hashFiles('**/pnpm-lock.yaml')}}
-    
-    - if: ${{ steps.cache-dependencies.outputs.cache-hit != 'true' }}
-      name: install dependencies
-      run: pnpm install
-    
-    - name: running lint
-      run: pnpm lint
-    # - name: running type check
-    #   run: pnpm tsc:check
+      - name: install node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18.x"
+
+      - name: install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7
+          run_install: false
+
+      - name: cache modules
+        id: cache-dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            **/node_modules
+          key: ${{runner.os}}-${{hashFiles('**/pnpm-lock.yaml')}}
+
+      - if: ${{ steps.cache-dependencies.outputs.cache-hit != 'true' }}
+        name: install dependencies
+        run: pnpm install
+
+      - name: running lint
+        run: pnpm lint
+
+      - name: running type check
+        run: pnpm check
