@@ -8,7 +8,8 @@
     "export": "next export",
     "start": "next start",
     "deploy": "gh-pages -d out",
-    "lint": "next lint"
+    "lint": "next lint",
+    "check": "tsc --project tsconfig.check.json --noEmit"
   },
   "dependencies": {
     "@types/node": "18.14.6",
