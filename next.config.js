@@ -3,7 +3,7 @@
 
 const nextConfig = {
   reactStrictMode: true,
-  assetPrefix: "./",
+  assetPrefix: "/",
   images: {
     unoptimized: true,
     remotePatterns: [
