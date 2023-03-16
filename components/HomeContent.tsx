@@ -13,15 +13,33 @@ const SecondTitle = ({ text }: { text: string }) => {
   );
 };
 
-const ContentCard = ({ pic, tech, src, header, description }: ICard) => {
+const ContentCard = ({
+  pic,
+  tech,
+  src,
+  header,
+  description,
+  projectSrc,
+}: ICard) => {
   return (
     <section className={styles.contentSection}>
       <div className={styles.background}>
-        <Image alt="dev" src={pic} width={400} height={225}></Image>
+        <Link href={src}>
+          <>
+            <Image
+              className={styles.pic}
+              alt="dev"
+              src={pic}
+              width={400}
+              height={225}
+              priority
+            ></Image>
+          </>
+        </Link>
       </div>
       <div className={styles.intro}>
         <div className={styles.introText}>
-          <Link href={src} className={styles.introHeader}>
+          <Link href={projectSrc} className={styles.introHeader}>
             {header}
           </Link>
           <div className={styles.introContent}>
@@ -41,10 +59,10 @@ export default function HomeContent({ production }: IHomeContent) {
         <span className={styles.title}>我的作品</span>
       </div>
       <section className={styles.contentWrapper}>
-        <SecondTitle text="开发"></SecondTitle>
+        {/* <SecondTitle text="开发"></SecondTitle> */}
         <section className={styles.cards}>
           {production.map((item, index) => {
-            const { src, pic, header, description, tech } = item;
+            const { src, pic, header, description, tech, projectSrc } = item;
             return (
               <ContentCard
                 key={index}
@@ -53,12 +71,12 @@ export default function HomeContent({ production }: IHomeContent) {
                 header={header}
                 description={description}
                 tech={tech}
+                projectSrc={projectSrc}
               />
             );
           })}
         </section>
       </section>
-      <div style={{ height: 800 }}></div>
     </section>
   );
 }
