@@ -88,12 +88,6 @@ jobs:
         uses: actions/upload-pages-artifact@v1
         with:
           path: ./out
-
-  # Deployment job
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4.4.1
         with:
