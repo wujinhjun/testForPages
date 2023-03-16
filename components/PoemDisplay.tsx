@@ -94,7 +94,6 @@ const PoemDisplay = ({ catalogs, contents }: IDisplay) => {
 
       contentElements.current.push(itemTopRange);
     });
-    console.table(contentElements.current);
   }, [catalogs]);
 
   useEffect(() => {

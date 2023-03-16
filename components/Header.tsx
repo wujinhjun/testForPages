@@ -7,9 +7,9 @@ import { useRouter } from "next/router";
 
 const mapNavbar: IButton[] = [
   { text: "首页", link: "/" },
-  { text: "程序", link: "/code" },
+  //   { text: "程序", link: "/code" },
   { text: "文艺", link: "/poem" },
-  { text: "设计", link: "/design" },
+  //   { text: "设计", link: "/design" },
   { text: "关于我", link: "/me" },
 ];
 

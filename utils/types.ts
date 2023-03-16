@@ -1,3 +1,5 @@
+import type { Url } from "next/dist/shared/lib/router/router";
+
 export interface IPoemHtml {
   id: string;
   content: string;
@@ -49,4 +51,26 @@ export interface IItemRange {
   id: string;
   start: number;
   end: number;
+}
+
+export interface IBanner {
+  contents: IBannerContent[];
+}
+
+export interface ICard {
+  pic: string;
+  src: Url;
+  header: string;
+  description: string;
+  tech: string;
+  projectSrc: string;
+}
+
+export interface IHome {
+  introduction: IBannerContent[];
+  project: ICard[];
+}
+
+export interface IHomeContent {
+  production: ICard[];
 }
