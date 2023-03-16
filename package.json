@@ -7,7 +7,7 @@
     "build": "next build",
     "export": "next export",
     "start": "next start",
-    "deploy": "gh-pages -d out",
+    "deploy": "gh-pages -d out -t true",
     "lint": "next lint",
     "check": "tsc --project tsconfig.check.json --noEmit"
   },
