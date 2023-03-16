@@ -63,6 +63,7 @@ export interface ICard {
   header: string;
   description: string;
   tech: string;
+  projectSrc: string;
 }
 
 export interface IHome {
