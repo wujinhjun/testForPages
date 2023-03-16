@@ -96,5 +96,6 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4.4.1
-        branch: gh-pages
-        folder: out
+        with:
+          branch: gh-pages
+          folder: out
