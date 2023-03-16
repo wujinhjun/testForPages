@@ -85,7 +85,7 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.runner }} next export
 
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4.4.1
+        # uses: JamesIves/github-pages-deploy-action@v4.4.1
         run: pnpm deploy
         # with:
         #   branch: gh-pages
