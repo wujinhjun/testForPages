@@ -9,7 +9,8 @@
     "start": "next start",
     "deploy": "gh-pages -d out -t true",
     "lint": "next lint",
-    "check": "tsc --project tsconfig.check.json --noEmit"
+    "check": "tsc --project tsconfig.check.json --noEmit",
+    "cover": "touch ./out/.nojekyll"
   },
   "dependencies": {
     "@types/node": "18.14.6",
