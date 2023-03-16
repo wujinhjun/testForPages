@@ -4,6 +4,7 @@ import type { Url } from "next/dist/shared/lib/router/router";
 import clsx from "clsx";
 import { CSSProperties, useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 const mapNavbar: IButton[] = [
   { text: "首页", link: "/" },
@@ -15,6 +16,7 @@ const mapNavbar: IButton[] = [
 
 export default function Header({ Poem }: { Poem?: boolean }) {
   const [curNav, setCurNav] = useState<Url>("/");
+  const [dis, setDis] = useState(false);
   const location = useRouter();
 
   const NavbarButton = ({ text, link }: IButton) => {
@@ -42,6 +44,28 @@ export default function Header({ Poem }: { Poem?: boolean }) {
     );
   };
 
+  const popFrame = () => {
+    return (
+      <section className={style.popFrame}>
+        <ul>
+          {mapNavbar.map((item, index) => {
+            return (
+              <NavbarButton
+                key={index}
+                text={item.text}
+                link={item.link}
+              ></NavbarButton>
+            );
+          })}
+        </ul>
+      </section>
+    );
+  };
+
+  const changeDisList = () => {
+    setDis(!dis);
+  };
+
   return (
     <div className={style.headerWrapper}>
       <div
@@ -50,6 +74,18 @@ export default function Header({ Poem }: { Poem?: boolean }) {
           [style.bottomLine]: Poem,
         })}
       >
+        <Image
+          className={style.list}
+          src="/assets/list.svg"
+          alt="screen"
+          placeholder="blur"
+          blurDataURL={"/assets/dev1.png"}
+          width={36}
+          height={36}
+          priority
+          onClick={changeDisList}
+        />
+
         {mapNavbar.map((item, index) => {
           return (
             <NavbarButton
@@ -63,6 +99,7 @@ export default function Header({ Poem }: { Poem?: boolean }) {
       <div className={style.rightPanel}>
         <div className={style.icon}>W</div>
       </div>
+      {dis && popFrame()}
     </div>
   );
 }

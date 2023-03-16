@@ -8,11 +8,16 @@
   padding-top: 32px;
   width: 100%;
   max-width: 1200px;
+  z-index: 5;
 
   .leftPanel {
     display: flex;
     flex-direction: row;
     align-items: center;
+
+    .list {
+      display: none;
+    }
 
     .button_wrapper {
       padding: 10px 24px;
@@ -62,7 +67,53 @@
     }
   }
 
-  @media (max-width: 1260px) {
+  .popFrame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($color: #000000, $alpha: 0.75);
+    z-index: 2;
+
+    ul {
+      margin-top: 96px;
+      padding-bottom: 24px;
+      background-color: variable.$main-color;
+
+      .button_wrapper {
+        padding: 10px 24px;
+        transition: all 0.1s linear;
+        .text {
+          @include variable.header;
+          color: variable.$back-color;
+          text-decoration: none;
+        }
+        &.active,
+        &:hover {
+          transition: all 0.1s linear;
+          .text {
+            color: variable.$second-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .headerWrapper {
     padding: 0 24px;
+
+    .leftPanel {
+      .list {
+        display: block;
+        z-index: 4;
+      }
+
+      .button_wrapper {
+        display: none;
+      }
+    }
   }
 }

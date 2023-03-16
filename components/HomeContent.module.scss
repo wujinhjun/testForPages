@@ -151,6 +151,40 @@
   }
 }
 
+@media (max-width: 992px) {
+  .contentsWrapper {
+    .contentWrapper {
+      .cards {
+        gap: 0px;
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .contentsWrapper {
+    .contentWrapper {
+      .cards {
+        gap: 0px;
+        width: 100%;
+
+        .contentSection {
+          transform-origin: top left;
+          transform: scale(0.66);
+
+          &:first-child {
+            margin-top: -36px;
+          }
+
+          &:not(:first-child) {
+            margin-top: -108px;
+          }
+        }
+      }
+    }
+  }
+}
+
 @keyframes typing {
   from {
     width: 0;
