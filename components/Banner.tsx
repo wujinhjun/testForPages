@@ -177,7 +177,7 @@ export default function Banner({ contents }: IBanner) {
         </div>
         <Timeline progress={100}></Timeline>
         <div className={styles.content}>{contents[currentIndex].content}</div>
-        <Button text={contents[currentIndex].buttonText}></Button>
+        {/* <Button text={contents[currentIndex].buttonText}></Button> */}
       </div>
     </section>
   );
