@@ -31,6 +31,14 @@
       "tech": "智能硬件的交互原型设计",
       "pic": "https://www.figma.com/file/QYpYATeu3rS3Qd8VfI7jwm/%E7%BE%8E%E4%BC%A2%E4%BC%A2?node-id=0%3A1&t=fGC2twRViI19ccDb-1",
       "projectSrc": "https://www.figma.com/file/QYpYATeu3rS3Qd8VfI7jwm/%E7%BE%8E%E4%BC%A2%E4%BC%A2?node-id=0%3A1&t=fGC2twRViI19ccDb-1"
+    },
+    {
+      "header": "灯火未阑珊",
+      "description": "且用一点点代码，去让诗用别的方式呈现",
+      "src": "https://github.com/wujinhjun/poem-visiualize",
+      "tech": "react+p5.js 创意编程工具",
+      "pic": "https://raw.githubusercontent.com/wujinhjun/wujinhjun-pic/main/weilanshan.jpg",
+      "projectSrc": "https://wujinhjun.github.io/poem-visiualize/"
     }
   ]
 }
