@@ -39,6 +39,14 @@
       "tech": "react+p5.js 创意编程工具",
       "pic": "https://raw.githubusercontent.com/wujinhjun/wujinhjun-pic/main/weilanshan.jpg",
       "projectSrc": "https://wujinhjun.github.io/poem-visiualize/"
+    },
+    {
+      "header": "光暗之间",
+      "description": "昨夜之愁，且借今日酒浇过",
+      "src": "https://github.com/wujinhjun/P5-game-Between-Light-Dark",
+      "tech": "react+p5.js 创意编程工具",
+      "pic": "https://raw.githubusercontent.com/wujinhjun/wujinhjun-pic/main/202304071547357.png",
+      "projectSrc": "https://wujinhjun.github.io/P5-game-Between-Light-Dark/"
     }
   ]
 }
