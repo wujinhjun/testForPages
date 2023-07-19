@@ -21,6 +21,7 @@
     "eslint-config-next": "13.2.3",
     "gray-matter": "^4.0.3",
     "next": "13.2.3",
+    "next-seo": "^6.1.0",
     "rc-virtual-list": "^3.4.13",
     "react": "18.2.0",
     "react-dom": "18.2.0",
