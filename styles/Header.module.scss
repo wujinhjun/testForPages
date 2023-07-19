@@ -1,0 +1,87 @@
+@use '../styles/variable' as variable;
+
+.headerContainer {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  .leftPanel {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .list {
+      display: none;
+    }
+
+    .button_wrapper {
+      padding: 10px 24px;
+      transition: all 0.1s linear;
+      .text {
+        @include variable.header;
+        color: variable.$back-color;
+        text-decoration: none;
+      }
+
+      .bottom_line {
+        height: 2px;
+        width: 0;
+        border-radius: 2px;
+        background-color: transparent;
+        transition: all 0.3s linear;
+      }
+
+      &[open],
+      &.active,
+      &:hover {
+        transition: all 0.1s linear;
+        transform: scale(1.2, 1.2);
+
+        .text {
+          color: variable.$back-color;
+        }
+
+        .bottom_line {
+          transition: all 0.3s linear;
+          width: 100%;
+          background-color: variable.$back-color;
+        }
+      }
+    }
+
+    &.bottomLine {
+      border-bottom: 1px solid variable.$second-color;
+    }
+  }
+
+  .rightPanel {
+    width: 64px;
+    height: 64px;
+    .icon {
+      font-weight: 500;
+      font-size: 48px;
+      line-height: 64px;
+      text-align: center;
+    }
+  }
+}
+
+// @media (max-width: 1200px) {
+//   .headerWrapper {
+//     padding: 0 24px;
+
+//     .leftPanel {
+//       .list {
+//         display: block;
+//         z-index: 4;
+//       }
+
+//       .button_wrapper {
+//         display: none;
+//       }
+//     }
+//   }
+// }
