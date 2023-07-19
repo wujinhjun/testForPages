@@ -1,0 +1,17 @@
+.header-fixed {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+
+  background-color: #58a7ff;
+  color: #fff;
+  transition: 0.2s;
+}
+
+.header-fixed:not(.sticky) {
+  background-color: transparent;
+  color: #58a7ff;
+}
