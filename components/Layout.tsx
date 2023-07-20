@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Header from './Header'
-import styles from './Layout.module.scss'
+import styles from '@/styles/Layout.module.scss'
 import clsx from 'clsx'
 
 interface Props {
@@ -18,6 +18,7 @@ export default function Layout({ children, poem }: Props) {
           content='The webpage for wujinhjun to display'
         />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
+        <meta name='viewport' content='viewport-fit=cover' />
       </Head>
 
       <>

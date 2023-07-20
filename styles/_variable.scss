@@ -12,6 +12,8 @@ $back-color: #ffffff;
 $catalog-color: #f8f9f4;
 $catalog-color-hover: #f1f3e9;
 
+$navbar-height: 64px;
+
 // font
 @mixin baseText {
   font-family: PingFang SC;
@@ -26,7 +28,7 @@ $catalog-color-hover: #f1f3e9;
 
 @font-face {
   font-family: HY;
-  src: url("../public/font/HYChengXing.ttf");
+  src: url('../public/font/HYChengXing.ttf');
 }
 
 @mixin poemText($fontSize, $lineHeight) {

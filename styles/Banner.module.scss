@@ -1,14 +1,4 @@
-@use "../styles/variable" as variable;
-
-// @keyframes timeline {
-//   from {
-//     width: 0;
-//   }
-
-//   to {
-//     width: 100%;
-//   }
-// }
+@use '../styles/variable' as variable;
 
 @mixin animation-generator($dire, $entry) {
   animation: slide-#{$dire}-#{$entry};
@@ -17,21 +7,21 @@
 @mixin animation-item() {
   .pictureSlideOut {
     display: block;
-    @include animation-generator("x", "out");
+    @include animation-generator('x', 'out');
   }
 
   .pictureSlideIn {
     display: block;
-    @include animation-generator("x", "in");
+    @include animation-generator('x', 'in');
   }
 
   &.negative {
     .pictureSlideOut {
-      @include animation-generator("x", "out-reverse");
+      @include animation-generator('x', 'out-reverse');
     }
 
     .pictureSlideIn {
-      @include animation-generator("x", "in-reverse");
+      @include animation-generator('x', 'in-reverse');
     }
   }
 }

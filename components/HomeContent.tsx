@@ -1,8 +1,8 @@
-import { useEffect, useRef } from "react";
-import Image from "next/image";
-import styles from "./HomeContent.module.scss";
-import Link from "next/link";
-import { ICard, IHomeContent } from "@/utils/types";
+import { useEffect, useRef } from 'react'
+import Image from 'next/image'
+import styles from '@/styles/HomeContent.module.scss'
+import Link from 'next/link'
+import { ICard, IHomeContent } from '@/utils/types'
 
 const SecondTitle = ({ text }: { text: string }) => {
   return (
@@ -10,8 +10,8 @@ const SecondTitle = ({ text }: { text: string }) => {
       <span className={styles.sectionTitle}>{text}</span>
       <span className={styles.line}></span>
     </div>
-  );
-};
+  )
+}
 
 const ContentCard = ({
   pic,
@@ -28,7 +28,7 @@ const ContentCard = ({
           <>
             <Image
               className={styles.pic}
-              alt="dev"
+              alt='dev'
               src={pic}
               width={400}
               height={225}
@@ -49,20 +49,20 @@ const ContentCard = ({
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
 export default function HomeContent({ production }: IHomeContent) {
   return (
     <section className={styles.contentsWrapper}>
-      <div id="title" className={styles.titleWrapper}>
+      <div id='title' className={styles.titleWrapper}>
         <span className={styles.title}>我的作品</span>
       </div>
       <section className={styles.contentWrapper}>
         {/* <SecondTitle text="开发"></SecondTitle> */}
         <section className={styles.cards}>
           {production.map((item, index) => {
-            const { src, pic, header, description, tech, projectSrc } = item;
+            const { src, pic, header, description, tech, projectSrc } = item
             return (
               <ContentCard
                 key={index}
@@ -73,10 +73,10 @@ export default function HomeContent({ production }: IHomeContent) {
                 tech={tech}
                 projectSrc={projectSrc}
               />
-            );
+            )
           })}
         </section>
       </section>
     </section>
-  );
+  )
 }

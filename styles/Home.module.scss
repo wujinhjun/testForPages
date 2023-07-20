@@ -1,12 +1,10 @@
+@use '../styles/variable' as variable;
+
 .main {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
   min-height: 100vh;
   max-width: 1200px;
   margin: 0 auto;
-  gap: 48px;
+  padding-top: variable.$navbar-height;
 
   @media (max-width: 1200px) {
     padding: 0 24px;

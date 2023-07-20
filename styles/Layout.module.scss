@@ -9,8 +9,8 @@
   position: absolute;
   top: 0;
 
-  z-index: 0;
-  background: url("https://raw.githubusercontent.com/wujinhjun/wujinhjun-pic/main/202303111131572.svg");
+  z-index: -1;
+  background: url('https://raw.githubusercontent.com/wujinhjun/wujinhjun-pic/main/202303111131572.svg');
   background-size: contain;
   background-repeat: no-repeat;
   width: 67%;
@@ -21,7 +21,7 @@
 }
 
 .back_triangle_2 {
-  background-image: url("https://raw.githubusercontent.com/wujinhjun/wujinhjun-pic/main/202303111131271.svg");
+  background-image: url('https://raw.githubusercontent.com/wujinhjun/wujinhjun-pic/main/202303111131271.svg');
 }
 
 @media (max-width: 576px) {
