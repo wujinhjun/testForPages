@@ -10,18 +10,17 @@
   top: 0;
 
   z-index: -1;
-  background: url('https://raw.githubusercontent.com/wujinhjun/wujinhjun-pic/main/202303111131572.svg');
+  background: url("data:image/svg+xml,%3Csvg width='1245' height='770' viewBox='0 0 1245 770' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h1245L0 770V0z' fill='%2358A7FF'/%3E%3C/svg%3E");
   background-size: contain;
   background-repeat: no-repeat;
   width: 67%;
   max-width: 1600px;
   aspect-ratio: 0.62;
-  margin-right: 650px;
   box-sizing: border-box;
 }
 
 .back_triangle_2 {
-  background-image: url('https://raw.githubusercontent.com/wujinhjun/wujinhjun-pic/main/202303111131271.svg');
+  background-image: url("data:image/svg+xml,%3Csvg width='1245' height='770' viewBox='0 0 1245 770' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h1245L0 770V0z' fill='%233F6FAE'/%3E%3C/svg%3E");
 }
 
 @media (max-width: 576px) {
