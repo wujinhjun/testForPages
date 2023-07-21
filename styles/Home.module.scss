@@ -6,6 +6,81 @@
   margin: 0 auto;
   padding-top: variable.$navbar-height;
 
+  .banner {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 72px;
+
+    .banner_wrapper {
+      .banner_img_container {
+        max-width: 750px;
+        height: auto;
+
+        flex: 1 1 300px;
+
+        background-color: rgba(220, 220, 220, 0.32);
+        border-radius: 32px;
+        border: 3px solid #fff;
+        box-shadow: 72px 84px 88px 0px rgba(233, 233, 233, 1),
+          48px 56px 48px 0 rgba(239, 239, 239, 1),
+          24px 32px 28px 0 rgba(220, 220, 220, 0.045),
+          16px 16px 16px 0 rgba(0, 0, 0, 0.035),
+          8px 8px 8px 0 rgba(0, 0, 0, 0.0275),
+          1.6px 1.6px 3.2px 0 rgba(0, 0, 0, 0.016);
+
+        .banner_img_background {
+          border: 9px solid transparent;
+          background-color: #fff;
+          background-clip: content-box;
+          border-radius: 30px;
+
+          img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+          }
+        }
+      }
+
+      > div {
+        > button {
+          width: 80px;
+          height: 16px;
+          background-color: variable.$main-color;
+          border-radius: 999rem;
+          cursor: pointer;
+
+          &:hover {
+            background-color: variable.$main-color-hover;
+          }
+
+          &:active {
+            background-color: variable.$main-color-active;
+          }
+        }
+      }
+    }
+
+    .banner_text_container {
+      flex: 1 1 200px;
+      margin-top: 32px;
+
+      .banner_text_header {
+        @include variable.baseText();
+        font-size: 36px;
+        line-height: 54px;
+      }
+
+      .banner_text_content {
+        @include variable.baseText();
+        font-size: 20px;
+        line-height: 30px;
+      }
+    }
+  }
+
   @media (max-width: 1200px) {
     padding: 0 24px;
   }
