@@ -1,76 +1,76 @@
-import type { Url } from "next/dist/shared/lib/router/router";
+import type { Url } from 'next/dist/shared/lib/router/router'
 
 export interface IPoemHtml {
-  id: string;
-  content: string;
-  title: string;
-  date: number;
+  id: string
+  content: string
+  title: string
+  date: number
 }
 
 export interface IPoem {
-  allPostsData: IPoemHtml[];
+  allPostsData: IPoemHtml[]
 }
 
 export interface ICatalogs {
-  id: string;
-  title: string;
+  id: string
+  title: string
 }
 
 export interface IDisplay {
-  catalogs: ICatalogs[];
-  contents: IPoemHtml[];
+  catalogs: ICatalogs[]
+  contents: IPoemHtml[]
 }
 
 export interface IPoemCard {
-  title: string;
-  content: string;
-  id: string;
+  title: string
+  content: string
+  id: string
 }
 
 export interface IButton {
-  text: string;
+  text: string
 }
 
 export interface IDots {
-  count: number;
-  clickPage: (index: number) => void;
+  count: number
+  clickPage: (index: number) => void
 }
 
 export interface IBannerContent {
-  src: string;
-  buttonText: string;
-  header: string;
-  content: string;
+  src: string
+  buttonText: string
+  header: string
+  content: string
 }
 
 export interface ITime {
-  progress: number;
+  progress: number
 }
 
 export interface IItemRange {
-  id: string;
-  start: number;
-  end: number;
+  id: string
+  start: number
+  end: number
 }
 
 export interface IBanner {
-  contents: IBannerContent[];
+  contents: IBannerContent[]
 }
 
 export interface ICard {
-  pic: string;
-  src: Url;
-  header: string;
-  description: string;
-  tech: string;
-  projectSrc: string;
+  pic: string
+  src: Url
+  header: string
+  description: string
+  tech: string
+  projectSrc: string
 }
 
 export interface IHome {
-  introduction: IBannerContent[];
-  project: ICard[];
+  introduction: IBannerContent[]
+  project: ICard[]
 }
 
 export interface IHomeContent {
-  production: ICard[];
+  production: ICard[]
 }
