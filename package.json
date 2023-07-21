@@ -24,6 +24,7 @@
     "next-seo": "^6.1.0",
     "rc-virtual-list": "^3.4.13",
     "react": "18.2.0",
+    "react-burger-menu": "^3.0.9",
     "react-dom": "18.2.0",
     "remark": "^14.0.2",
     "remark-html": "^15.0.2",
