@@ -12,7 +12,7 @@ $back-color: #ffffff;
 $catalog-color: #f8f9f4;
 $catalog-color-hover: #f1f3e9;
 
-$navbar-height: 64px;
+$navbar-height: 64px + 32px;
 
 // font
 @mixin baseText {
