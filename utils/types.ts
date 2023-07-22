@@ -41,6 +41,7 @@ export interface IBannerContent {
   buttonText: string
   header: string
   content: string
+  id: string
 }
 
 export interface ITime {
