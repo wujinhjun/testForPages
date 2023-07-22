@@ -1,82 +1,190 @@
 @use '../styles/variable' as variable;
 
+$positive-location: calc(100% + 6px);
+$negative-location: calc(-100% - 6px);
+
+@mixin animation-generator($entry) {
+  animation: slide-x-#{$entry};
+}
+
+@keyframes slide-x-in {
+  from {
+    transform: translateX($positive-location);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-x-out {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX($negative-location);
+  }
+}
+
+@keyframes slide-x-in-reverse {
+  from {
+    transform: translateX($negative-location);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-x-out-reverse {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX($positive-location);
+  }
+}
+
 .main {
   min-height: 100vh;
   max-width: 1200px;
   margin: 0 auto;
   padding-top: variable.$navbar-height;
+  .banner_container {
+    .banner {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 72px;
 
-  .banner {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 72px;
+      .banner_wrapper {
+        .banner_img_container {
+          max-width: 750px;
+          aspect-ratio: 1.67;
 
-    .banner_wrapper {
-      .banner_img_container {
-        max-width: 750px;
-        height: auto;
+          flex: 1 1 300px;
 
-        flex: 1 1 300px;
+          transition: 0.2s linear;
 
-        background-color: rgba(220, 220, 220, 0.32);
-        border-radius: 32px;
-        border: 3px solid #fff;
-        box-shadow: 72px 84px 88px 0px rgba(233, 233, 233, 1),
-          48px 56px 48px 0 rgba(239, 239, 239, 1),
-          24px 32px 28px 0 rgba(220, 220, 220, 0.045),
-          16px 16px 16px 0 rgba(0, 0, 0, 0.035),
-          8px 8px 8px 0 rgba(0, 0, 0, 0.0275),
-          1.6px 1.6px 3.2px 0 rgba(0, 0, 0, 0.016);
+          background-color: rgba(220, 220, 220, 0.32);
+          border-radius: 32px;
+          border: 3px solid #fff;
 
-        .banner_img_background {
-          border: 9px solid transparent;
-          background-color: #fff;
-          background-clip: content-box;
-          border-radius: 30px;
+          box-shadow: 72px 84px 88px 0px rgba(233, 233, 233, 1),
+            48px 56px 48px 0 rgba(239, 239, 239, 1),
+            24px 32px 28px 0 rgba(220, 220, 220, 0.045),
+            16px 16px 16px 0 rgba(0, 0, 0, 0.035),
+            8px 8px 8px 0 rgba(0, 0, 0, 0.0275),
+            1.6px 1.6px 3.2px 0 rgba(0, 0, 0, 0.016);
 
-          img {
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
+          display: grid;
+          grid-template: 1fr/1fr;
+          overflow: hidden;
+
+          .banner_img_background {
+            border: 9px solid transparent;
+            background-color: #fff;
+            background-clip: content-box;
+            border-radius: 30px;
+
+            grid-area: 1/1;
+            overflow: hidden;
+            visibility: hidden;
+
+            transition: transform 0.2s ease-in-out;
+
+            &[class~='current'] {
+              visibility: visible;
+              transform: translateX(0);
+            }
+
+            // &.prev {
+            //   @include animation-generator('out');
+            // }
+
+            // &.next {
+            //   @include animation-generator('in');
+            // }
+
+            // &.current {
+            //   visibility: visible;
+            //   transform: translateX(0);
+            // }
+
+            &[class~='prev'] {
+              //   animation: slide-out;
+              visibility: visible;
+              @include animation-generator('out');
+            }
+
+            &[class~='next'] {
+              // transform: translateX(calc(100% + 6px));
+              //   animation: slide-in;
+              visibility: visible;
+              @include animation-generator('in');
+            }
+
+            &[class~='negative'][class~='prev'] {
+              //   animation: slide-out-reverse;
+              visibility: visible;
+              @include animation-generator('out-reverse');
+            }
+
+            &[class~='negative'][class~='next'] {
+              //   animation: slide-in-reverse;
+              visibility: visible;
+              @include animation-generator('in-reverse');
+            }
+
+            img {
+              display: block;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+        }
+
+        .banner_button_group {
+          grid-area: c;
+          margin-top: 24px;
+          > button {
+            width: 80px;
+            height: 16px;
+            background-color: variable.$main-color;
+            border-radius: 999rem;
+            cursor: pointer;
+
+            &:hover {
+              background-color: variable.$main-color-hover;
+            }
+
+            &.active,
+            &[open] {
+              background-color: variable.$main-color-active;
+            }
           }
         }
       }
 
-      > div {
-        > button {
-          width: 80px;
-          height: 16px;
-          background-color: variable.$main-color;
-          border-radius: 999rem;
-          cursor: pointer;
+      .banner_text_container {
+        flex: 1 1 200px;
+        margin-top: 32px;
 
-          &:hover {
-            background-color: variable.$main-color-hover;
-          }
-
-          &:active {
-            background-color: variable.$main-color-active;
-          }
+        .banner_text_header {
+          @include variable.baseText();
+          font-size: 36px;
+          line-height: 54px;
+          white-space: pre-line;
         }
-      }
-    }
 
-    .banner_text_container {
-      flex: 1 1 200px;
-      margin-top: 32px;
-
-      .banner_text_header {
-        @include variable.baseText();
-        font-size: 36px;
-        line-height: 54px;
-      }
-
-      .banner_text_content {
-        @include variable.baseText();
-        font-size: 20px;
-        line-height: 30px;
+        .banner_text_content {
+          @include variable.baseText();
+          font-size: 20px;
+          line-height: 30px;
+        }
       }
     }
   }
