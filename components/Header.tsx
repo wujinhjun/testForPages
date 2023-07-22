@@ -37,6 +37,7 @@ export default function Header({ name }: { name: string }) {
           [style.leftPanel]: true,
         })}
       >
+        <div className={'text-white'}>LOGO</div>
         <NavbarButton text={'首页'} link={'/'} active={name == 'home'} />
         <NavbarButton text={'文艺'} link={'/poem'} active={name == 'poem'} />
         <NavbarButton text={'关于我'} link={'/me'} active={name == 'me'} />
