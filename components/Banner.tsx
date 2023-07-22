@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import clsx from 'clsx'
 import styles from '@/styles/Banner.module.scss'
-import useInterval from '@/utils/useInterval'
+import useInterval from '@/hooks/useInterval'
 import type { IButton, IDots, ITime, IBanner } from '@/utils/types'
 
 import React, { useState, useEffect, useRef } from 'react'
