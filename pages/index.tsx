@@ -1,16 +1,22 @@
 import Head from 'next/head'
-import styles from '@/styles/Home.module.scss'
-import HomeContent from '@/components/HomeContent'
-import type { IHome } from '@/utils/types'
-import { getHomeContentData } from '@/utils/content'
-import Header from '@/components/Header'
-import useScrollTop from '@/hooks/useScrollTop'
 import { useEffect, useMemo, useRef, useState } from 'react'
 
+import Header from '@/components/Header'
+import HomeContent from '@/components/HomeContent'
+
+import useScrollTop from '@/hooks/useScrollTop'
+import useInterval from '@/hooks/useInterval'
+
+import type { IHome } from '@/utils/types'
+import { getHomeContentData } from '@/utils/content'
+
+import styles from '@/styles/Home.module.scss'
+
 const animationDurationTime = 500
+const animationPlayTime = 5500
 
 export default function Home({ introduction, project }: IHome) {
-  const [currentIndex, setCurrentIndex] = useState(1)
+  const [currentIndex, setCurrentIndex] = useState(0)
   const [previousIndex, setPreviousIndex] = useState(currentIndex)
   const [slideDirection, setSlideDirection] = useState<
     'negative' | 'positive' | null
@@ -63,6 +69,10 @@ export default function Home({ introduction, project }: IHome) {
     }
   }
 
+  const resetInterval = useInterval(() => {
+    slideTo({ targetIndex: getIndex(currentIndex + 1) })
+  }, animationPlayTime)
+
   useEffect(() => {
     return () => {
       animationTimerRef.current && clearInterval(animationTimerRef.current)
@@ -104,12 +114,13 @@ export default function Home({ introduction, project }: IHome) {
                     <button
                       key={`button-${index}-${item.id}`}
                       open={index === currentIndex}
-                      onClick={() =>
+                      onClick={() => {
                         slideTo({
                           targetIndex: index,
                           isNegative: index < currentIndex,
                         })
-                      }
+                        resetInterval()
+                      }}
                     />
                   )
                 })}
@@ -119,6 +130,17 @@ export default function Home({ introduction, project }: IHome) {
               <p className={styles.banner_text_header}>
                 {introduction[currentIndex].header}
               </p>
+              <div className={`${styles.banner_time_progress}`}>
+                <div
+                  className={`${styles.banner_time_progress_inner}`}
+                  style={{
+                    animationDuration: `${
+                      animationPlayTime - animationDurationTime
+                    }ms`,
+                  }}
+                  open={!switching}
+                ></div>
+              </div>
               <p className={styles.banner_text_content}>
                 {introduction[currentIndex].content}
               </p>

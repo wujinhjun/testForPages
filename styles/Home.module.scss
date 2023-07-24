@@ -184,6 +184,38 @@ $negative-location: calc(-100% - 6px);
           @include variable.baseText();
           font-size: 20px;
           line-height: 30px;
+          //   text-align: justify;
+        }
+
+        .banner_time_progress {
+          height: 8px;
+          margin: 8px 0;
+          background-color: gray;
+          border-radius: 999rem;
+          overflow: hidden;
+          position: relative;
+
+          .banner_time_progress_inner {
+            width: 0;
+            height: 8px;
+            background-color: variable.$main-color;
+            border-radius: 999rem;
+
+            &[open] {
+              animation: time-progress;
+              animation-timing-function: linear;
+
+              @keyframes time-progress {
+                from {
+                  width: 0;
+                }
+
+                to {
+                  width: 100%;
+                }
+              }
+            }
+          }
         }
       }
     }
