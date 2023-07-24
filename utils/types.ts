@@ -5,6 +5,7 @@ export interface IPoemHtml {
   content: string
   title: string
   date: number
+  year: number
 }
 
 export interface IPoem {
