@@ -13,7 +13,11 @@ interface IButton {
   active: boolean
 }
 
-const NavbarButton = memo(({ text, link, active }: IButton) => {
+const NavbarButton = memo(function NavBarButtonInit({
+  text,
+  link,
+  active,
+}: IButton) {
   return (
     <div
       className={clsx({
