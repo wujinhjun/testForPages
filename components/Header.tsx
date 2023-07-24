@@ -45,8 +45,6 @@ export default function Header({ name }: { name: string }) {
         <NavbarButton text={'首页'} link={'/'} active={name == 'home'} />
         <NavbarButton text={'文艺'} link={'/poem'} active={name == 'poem'} />
         <NavbarButton text={'关于我'} link={'/me'} active={name == 'me'} />
-        {/* <NavbarButton text={'首页'} link={'/'} />
-        <NavbarButton text={'首页'} link={'/'} /> */}
       </div>
       <div className={style.rightPanel}>
         <div className={style.icon}>W</div>
