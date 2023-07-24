@@ -1,4 +1,5 @@
 @use '../styles/variable' as variable;
+@import './poem.module.scss';
 
 $positive-location: calc(100% + 6px);
 $negative-location: calc(-100% - 6px);
@@ -52,6 +53,9 @@ $negative-location: calc(-100% - 6px);
   max-width: 1200px;
   margin: 0 auto;
   padding-top: variable.$navbar-height;
+  padding-left: 24px;
+  padding-right: 24px;
+
   .banner_container {
     .banner {
       display: flex;
@@ -100,40 +104,22 @@ $negative-location: calc(-100% - 6px);
               transform: translateX(0);
             }
 
-            // &.prev {
-            //   @include animation-generator('out');
-            // }
-
-            // &.next {
-            //   @include animation-generator('in');
-            // }
-
-            // &.current {
-            //   visibility: visible;
-            //   transform: translateX(0);
-            // }
-
             &[class~='prev'] {
-              //   animation: slide-out;
               visibility: visible;
               @include animation-generator('out');
             }
 
             &[class~='next'] {
-              // transform: translateX(calc(100% + 6px));
-              //   animation: slide-in;
               visibility: visible;
               @include animation-generator('in');
             }
 
             &[class~='negative'][class~='prev'] {
-              //   animation: slide-out-reverse;
               visibility: visible;
               @include animation-generator('out-reverse');
             }
 
             &[class~='negative'][class~='next'] {
-              //   animation: slide-in-reverse;
               visibility: visible;
               @include animation-generator('in-reverse');
             }
@@ -184,7 +170,6 @@ $negative-location: calc(-100% - 6px);
           @include variable.baseText();
           font-size: 20px;
           line-height: 30px;
-          //   text-align: justify;
         }
 
         .banner_time_progress {
@@ -219,13 +204,5 @@ $negative-location: calc(-100% - 6px);
         }
       }
     }
-  }
-
-  @media (max-width: 1200px) {
-    padding: 0 24px;
-  }
-
-  @media (max-width: 992px) {
-    padding: 0 16px;
   }
 }
