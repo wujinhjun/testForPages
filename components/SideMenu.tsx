@@ -1,4 +1,4 @@
-import { CSSProperties, ReactNode, useMemo, useState, useRef } from 'react'
+import { ReactNode, useState, useRef, Ref } from 'react'
 
 import styles from '@/styles/SideMenu.module.scss'
 
@@ -9,6 +9,7 @@ type SubMenuTypes = {
     | ReturnType<typeof MenuItem>
   chapter: string
   href?: string
+  active?: boolean
   onChangeOpen?: (open: boolean) => void
 }
 
@@ -18,11 +19,25 @@ type MenuItemTypes = {
   className: string
 }
 
-export function SideMenu({ children }: { children?: ReactNode }) {
-  return <aside className={styles.side_menu_wrapper}>{children}</aside>
+type SideMenuTypes = {
+  children?: ReactNode
+  forwardRef?: Ref<HTMLLIElement>
 }
 
-export function SubMenu({ children, chapter, href = '' }: SubMenuTypes) {
+export function SideMenu({ children, forwardRef }: SideMenuTypes) {
+  return (
+    <aside className={styles.side_menu_wrapper} ref={forwardRef}>
+      {children}
+    </aside>
+  )
+}
+
+export function SubMenu({
+  children,
+  chapter,
+  href = '',
+  active,
+}: SubMenuTypes) {
   const [open, setOpen] = useState(false)
   const childrenWrapperRef = useRef<HTMLUListElement | null>(null)
   const collapsedTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -63,7 +78,7 @@ export function SubMenu({ children, chapter, href = '' }: SubMenuTypes) {
   return (
     <li className={`${styles.sub_side_menu_wrapper}`}>
       <a
-        className={`${styles.sub_menu_chapter}`}
+        className={`${styles.sub_menu_chapter} ${active ? 'active' : ''}`}
         open={open}
         onClick={() => {
           setOpen((prev) => !prev)
