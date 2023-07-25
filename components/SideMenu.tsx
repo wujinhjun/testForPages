@@ -15,6 +15,7 @@ type SubMenuTypes = {
 type MenuItemTypes = {
   children?: ReactNode
   href?: string
+  className: string
 }
 
 export function SideMenu({ children }: { children?: ReactNode }) {
@@ -79,9 +80,13 @@ export function SubMenu({ children, chapter, href = '' }: SubMenuTypes) {
   )
 }
 
-export function MenuItem({ children, href = '' }: MenuItemTypes) {
+export function MenuItem({
+  children,
+  href = '',
+  className = '',
+}: MenuItemTypes) {
   return (
-    <li className={styles.side_menu_item_wrapper}>
+    <li className={`${styles.side_menu_item_wrapper} ${className}`}>
       <a href={href}>{children}</a>
     </li>
   )

@@ -30,8 +30,6 @@
 }
 
 .sub_side_menu_wrapper {
-  //   max-height: 35vh;
-  //   overflow: scroll;
   .sub_menu_chapter {
     display: flex;
     justify-content: space-between;
@@ -59,6 +57,10 @@
     }
     background-color: variable.$catalog-sub-color;
     transition: height 0.2s ease-in-out;
+
+    &[class~='active'] {
+      color: variable.$main-color;
+    }
   }
 
   .sub_side_menu_items {

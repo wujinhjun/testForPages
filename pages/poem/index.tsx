@@ -6,14 +6,10 @@ import { NextSeo } from 'next-seo'
 import type { IPoem, ICatalogs, IPoemHtml, IPoemCard } from '@/utils/types'
 import Header from '@/components/Header'
 import useScrollTop from '@/hooks/useScrollTop'
-import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar'
+// import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar'
 import { useMemo } from 'react'
 import group from '@/utils/group'
-import {
-  SideMenu,
-  MenuItem as MyMenuItem,
-  SubMenu as MySubMenu,
-} from '@/components/SideMenu'
+import { SideMenu, MenuItem, SubMenu } from '@/components/SideMenu'
 
 const PoemCard = ({ title, content, id }: IPoemCard) => {
   return (
@@ -70,18 +66,19 @@ export default function Poem({ allPostsData }: IPoem) {
             <SideMenu>
               {Object.keys(groupedPoem).map((key) => {
                 return (
-                  <MySubMenu chapter={key} key={`poem-submenu-${key}`}>
+                  <SubMenu chapter={key} key={`poem-submenu-${key}`}>
                     {groupedPoem[key].map((poemItem) => {
                       return (
-                        <MyMenuItem
+                        <MenuItem
                           key={`${key}-poem-${poemItem.id}`}
                           href={`#${poemItem.id}`}
+                          className={`active`}
                         >
                           {poemItem.title}
-                        </MyMenuItem>
+                        </MenuItem>
                       )
                     })}
-                  </MySubMenu>
+                  </SubMenu>
                 )
               })}
             </SideMenu>
