@@ -13,6 +13,7 @@
     "cover": "touch ./out/.nojekyll"
   },
   "dependencies": {
+    "ahooks": "^3.7.8",
     "clsx": "^1.2.1",
     "gray-matter": "^4.0.3",
     "next": "13.2.3",
