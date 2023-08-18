@@ -67,7 +67,6 @@ export function SubMenu({
       target.style.height = '0px'
       target.offsetHeight
       target.style.height = `${height}px`
-
       collapsedTimer.current = setTimeout(() => {
         target.style.overflow = 'auto'
         target.style.height = 'auto'
@@ -83,8 +82,7 @@ export function SubMenu({
         onClick={() => {
           setOpen((prev) => !prev)
           handleSubmenuClick()
-        }}
-      >
+        }}>
         {chapter}
         <span className={styles.sub_menu_item_icon}></span>
       </a>
